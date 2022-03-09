@@ -11,23 +11,23 @@
           <span class="slogan-2 title-m">{{ $t('home.slogan2') }}</span>
         </div>
         <div class="btn-opt">
-          <v-btn class="btn-create" x-large color="primary" @click="newWork">创建新实例</v-btn>
-          <v-btn class="btn-offline" x-large outlined color="primary" @click="goToOffline">前往离线版</v-btn>
+          <v-btn class="btn-create" x-large color="primary" @click="newWork">{{ $t('home.createNow') }}</v-btn>
+          <v-btn class="btn-offline" x-large outlined color="primary" @click="goToOffline">{{ $t('home.viewDocument') }}</v-btn>
         </div>
       </div>
     </div>
     <div class="features">
       <div class="features-question">
-        <span class="logo-text">JS Encoder</span>
-        <span class="title-xl"> 能做什么？</span>
+        <span class="logo-text">OWL Encoder</span>
+        <span class="title-xl"> {{ $t('home.whatisOOE') }}</span>
       </div>
       <ul class="features-list">
         <li class="d-flex flex-clo" v-for="(item, index) in featuresList" :key="index">
           <div>
             <i class="icon iconfont" :class="item.icon" :style="{color:item.color}"></i>
-            <span class="feature-title">{{item.title}}</span>
+            <span class="feature-title">{{ $t(item.title) }}</span>
           </div>
-          <span class="feature-content">{{item.content}}</span>
+          <span class="feature-content">{{ $t(item.content) }}</span>
         </li>
       </ul>
     </div>
@@ -46,41 +46,38 @@ export default {
       featuresList: Object.freeze([
         {
           icon: 'icon-yuncunchu',
-          title: '云存储',
-          content: '保存代码至云端，分享你的实例链接，让更多用户浏览你的作品。',
+          title: 'home.features.cloudStorage',
+          content: 'home.features.cloudStorageDesc',
           color: '#1296db',
         },
         {
           icon: 'icon-daorudaochu',
-          title: '导入导出',
-          content: '可导入本地代码进行在线编辑，也可将编写好的代码导出至本地。',
+          title: 'home.features.importExport',
+          content: 'home.features.importExportDesc',
           color: '#d81e06',
         },
         {
           icon: 'icon-gexinghuapeizhi',
-          title: '个性化设置',
-          content: '可针对你的编码习惯进行个性化，多样化的编码设置。',
+          title: 'home.features.customizable',
+          content: 'home.features.customizableDesc',
           color: '#d4237a',
         },
         {
           icon: 'icon-bianma',
-          title: '编码',
-          content:
-            '支持 HTML，CSS 和 JavaScript 以及它们 8 种预处理语言编译及高亮。',
+          title: 'home.features.codeSyntax',
+          content: 'home.features.codeSyntaxDesc',
           color: '#1890ff',
         },
         {
           icon: 'icon-markdown1',
-          title: 'Markdown',
-          content:
-            '实时预览、同步滚动、编写文档更加顺畅；运用工具栏和丰富的快捷键，快速生成语法。',
+          title: 'home.features.markdown',
+          content: 'home.features.markdownDesc',
           color: '#05104b',
         },
         {
           icon: 'icon-console1',
-          title: 'Console',
-          content:
-            '模拟 Chrome 原生 Console, 支持多种类型的日志高亮显示；也可直接输入命令进行调试。',
+          title: 'home.features.console',
+          content: 'home.features.consoleDesc',
           color: '#1afa29',
         },
       ]),

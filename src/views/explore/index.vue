@@ -5,7 +5,7 @@
       <div class="explore-search">
         <v-row>
           <v-col lg="6" md="8" sm="8" cols="12">
-            <v-text-field class="search-keyword" ref="searchField" solo label="找找你想要的..." height="60" clearable
+            <v-text-field class="search-keyword" ref="searchField" solo :label="$t('explore.searchTips')" height="60" clearable
               hide-details v-model="searchForm.keyword" @keypress.enter="search">
               <template slot="append">
                 <v-btn class="search-btn" color="primary" absolute x-large :disabled="!searchForm.keyword"
@@ -15,20 +15,20 @@
           </v-col>
           <v-col lg="2" md="2" sm="2" cols="12">
             <v-btn height="60" x-large plain block :elevation="showFilter?5:0" @click="showFilter=!showFilter">
-              <v-icon left>mdi-filter-variant</v-icon> 过滤
+              <v-icon left>mdi-filter-variant</v-icon> {{ $t('explore.filterButton') }}
             </v-btn>
           </v-col>
         </v-row>
         <v-row v-show="showFilter">
           <v-col lg="4" md="4" sm="6" cols="12">
-            <span>预处理：</span>
+            <span>{{ $t('explore.preprocessLabel') }}</span>
             <v-select hide-details clearable solo v-model="searchForm.prep" :items="prepList"
               :menu-props="{ offsetY: true }" @change="newSearch">
             </v-select>
           </v-col>
           <v-col lg="4" md="4" sm="6" cols="12">
-            <span>排序：</span>
-            <v-select solo item-text="text" item-value="value" hide-details v-model="searchForm.sort"
+            <span>{{ $t('explore.sortLabel') }}</span>
+            <v-select solo :item-text="text" item-value="value" hide-details v-model="searchForm.sort"
               :menu-props="{ offsetY: true }" :items="sortList" @change="newSearch">
             </v-select>
           </v-col>
@@ -37,8 +37,8 @@
       <div class="find-tip flex-jcc" v-show="showNothingTip">
         <div class="tip-content d-flex flex-clo flex-ai">
           <span class="emoji">🧐</span>
-          <span class="text-describe">哎呀，什么都没找到诶~~</span>
-          <span class="text-describe">但我想，也许你可以为这里开拓一片新天地？</span>
+          <span class="text-describe">{{ $t('explore.noDataTips1') }}</span>
+          <span class="text-describe">{{ $t('explore.noDataTips2') }}</span>
         </div>
       </div>
       <!-- <div class="init-tip flex-jcc" v-show="!init">
@@ -51,13 +51,13 @@
           <div class="explore-list-item" v-for="(item, index) in instanceList" :key="item.exampleId">
             <instance-card :info="item" :cardIndex="index" @setFav="setFav"></instance-card>
           </div>
-          <div class="skeleton-list-item" v-show="listLoading" v-for="(item, index) in 12" :key="index">
+          <div class="skeleton-list-item" v-show="listLoading" v-for="(item, index) in 12" :key="'index_' + index">
             <instance-skeleton></instance-skeleton>
           </div>
         </div>
         <div class="page-opt flex-jcc" v-show="!isFirstPage||!isLastPage">
-          <v-btn class="before-btn" @click="switchPage(-1)" :disabled="isFirstPage">上一页</v-btn>
-          <v-btn color="primary" class="after-btn" @click="switchPage(1)" :disabled="isLastPage">下一页</v-btn>
+          <v-btn class="before-btn" @click="switchPage(-1)" :disabled="isFirstPage">{{ $t('explore.prevPage') }}</v-btn>
+          <v-btn color="primary" class="after-btn" @click="switchPage(1)" :disabled="isLastPage">{{ $t('explore.nextPage') }}</v-btn>
         </div>
       </div>
     </div>
@@ -86,11 +86,11 @@ export default {
   },
   data() {
     return {
-      sortList: Object.freeze([
-        { text: '创建时间', value: 0 },
-        { text: '更新日期', value: 1 },
-        { text: '喜爱度', value: 2 },
-      ]),
+      // sortList: Object.freeze([
+      //   { text: 'explore.sortByCreateDate', value: 0 },
+      //   { text: 'explore.sortByCreateDate', value: 1 },
+      //   { text: 'explore.sortByPopularity', value: 2 },
+      // ]),
       prepList: [],
       searchForm: {
         keyword: '',
@@ -116,6 +116,16 @@ export default {
     }
     this.initData()
   },
+  computed: {
+    sortList() {
+      return [
+        { text: this.$t('explore.sortByCreateDate'), value: 0 },
+        { text: this.$t('explore.sortByCreateDate'), value: 1 },
+        { text: this.$t('explore.sortByPopularity'), value: 2 },
+      ]
+    }
+  },
+
   methods: {
     initData() {
       let page = 1

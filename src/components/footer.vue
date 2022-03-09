@@ -4,18 +4,19 @@
       <div class="side-info flex-1">
         <div class="logo d-flex flex-ai">
           <img class="logo-img" src="../assets/logo/logo.svg" alt="">
-          <span class="logo-content">JS Encoder</span>
+          <span class="logo-content">OWL Encoder</span>
         </div>
         <div class="copyright-info d-flex flex-clo text-sm">
-          <span class="copyright">Copyright © 2021 JS-Encoder lliiooiill</span>
-          <span>黑ICP备19007665号-1</span>
+          <span class="copyright">Copyright © 2022 OWL-Encoder odoo-consultant</span>
+          <!-- <span>浙ICP备14016375号-2</span> -->
+          <a target="_blank" href="https://beian.miit.gov.cn/">浙ICP备14016375号-2</a>
         </div>
       </div>
       <div class="footer-menu d-flex">
         <ul class="menu-box" v-for="(curMenu, menuIndex) in footerMenu" :key="menuIndex">
-          <li class="menu-title title-sm">{{curMenu.title}}</li>
+          <li class="menu-title title-sm">{{ $t(curMenu.title) }}</li>
           <li class="menu-item text-sm pointer" v-for="(item, index) in curMenu.children" :key="index"
-            @click="handleFooterLink(item.name)">{{item.text}}
+            @click="handleFooterLink(item.name)">{{ $t(item.text) }}
           </li>
         </ul>
       </div>
@@ -29,44 +30,44 @@ export default {
     return {
       footerMenu: Object.freeze([
         {
-          title: '产品',
+          title: 'footer.menuProduct.title',
           children: [
             {
-              text: '新特性',
-              name: 'Feature',
+              text: 'footer.menuProduct.features',
+              name: 'Features',
             },
             {
-              text: '更新日志',
+              text: 'footer.menuProduct.log',
               name: 'Log',
             },
             {
-              text: '问题',
+              text: 'footer.menuProduct.issues',
               name: 'Issues',
             },
           ],
         },
         {
-          title: '关于',
+          title: 'footer.aboutProduct.title',
           children: [
             {
-              text: 'GitHub',
+              text: 'footer.aboutProduct.github',
               name: 'GitHub',
             },
             {
-              text: '遵循协议',
+              text: 'footer.aboutProduct.license',
               name: 'License',
             },
           ],
         },
         {
-          title: '支持',
+          title: 'footer.supportProduct.title',
           children: [
             {
-              text: '联系支持',
+              text: 'footer.supportProduct.email',
               name: 'Email',
             },
             {
-              text: '赞助',
+              text: 'footer.supportProduct.sponsor',
               name: 'Sponsor',
             },
           ],
@@ -77,33 +78,33 @@ export default {
   methods: {
     handleFooterLink(name) {
       switch (name) {
-        case 'Feature': {
-          this.$router.push({ name: 'Feature' })
+        case 'Features': {
+          this.$router.push({ name: 'Features' })
           break
         }
         case 'Log': {
           window.open(
-            'https://github.com/Longgererer/JS-Encoder-Online/releases'
+            'https://github.com/odoo-consultant/JS-Encoder-Online/releases'
           )
           break
         }
         case 'Issues': {
-          window.open('https://github.com/Longgererer/JS-Encoder-Online/issues')
+          window.open('https://github.com/odoo-consultant/JS-Encoder-Online/issues')
           break
         }
         case 'GitHub': {
-          window.open('https://github.com/Longgererer/JS-Encoder-Online')
+          window.open('https://github.com/odoo-consultant/JS-Encoder-Online')
           break
         }
         case 'License': {
           window.open(
-            'https://github.com/Longgererer/JS-Encoder-Online/blob/main/LICENSE'
+            'https://github.com/odoo-consultant/JS-Encoder-Online/blob/main/LICENSE'
           )
           break
         }
         case 'Email': {
           const a = document.createElement('a')
-          a.href = 'mailto:c2b139460q@163.com'
+          a.href = 'mailto:1069010@qq.com'
           a.click()
           break
         }

@@ -6,7 +6,7 @@
     <v-navigation-drawer style="height:100vh" absolute temporary v-model="showNav">
       <v-list>
         <v-list-item link v-for="item in navList" :key="item.name" @click="navJumpTo(item)">
-          <v-badge color="primary" dot v-if="item.text==='新特性' && hasNewFeatures">
+          <v-badge color="primary" dot v-if="item.text==='navList.features' && hasNewFeatures">
             <v-list-item-title>{{ $t(item.text)}}</v-list-item-title>
           </v-badge>
           <v-list-item-title v-else>{{ $t(item.text) }}</v-list-item-title>
@@ -16,14 +16,14 @@
     <router-link :to="{name:'Home'}">
       <div class="logo pointer no-select d-flex flex-ai">
         <img class="logo-img" src="../assets/logo/logo.svg" alt="">
-        <span class="logo-content">JS Encoder</span>
+        <span class="logo-content">OWL Encoder</span>
       </div>
     </router-link>
     <div class="vert-divide-line"></div>
     <nav class="d-flex flex-1 no-select pointer">
       <v-btn class="nav-item rounded-0" depressed v-for="(item, index) in navList" :key="index"
         :plain="curRouteName !== item.name" tile @click="navJumpTo(item)">
-        <v-badge color="primary" dot v-if="item.text==='新特性' && hasNewFeatures">
+        <v-badge color="primary" dot v-if="item.text==='navList.features' && hasNewFeatures">
           {{ $(item.text) }}
         </v-badge>
         <span v-else>{{ $t(item.text) }}</span>
@@ -55,13 +55,13 @@ export default {
           text: 'navList.features',
           name: 'Features',
         },
-        {
-          text: 'navList.feedback',
-          name: 'Feedback',
-        },
-        {
-          text: 'navList.document',
-        },
+        // {
+        //   text: 'navList.feedback',
+        //   name: 'Feedback',
+        // },
+        // {
+        //   text: 'navList.document',
+        // },
         {
           text: 'navList.github',
         },
@@ -83,11 +83,11 @@ export default {
     navJumpTo(navItem) {
       switch (navItem.text) {
         case 'navList.github': {
-          window.open('https://github.com/Longgererer/JS-Encoder-Online')
+          window.open('https://github.com/odoo-consultant/JS-Encoder-Online')
           break
         }
         case 'navList.document': {
-          window.open('http://doc.lliiooiill.cn/')
+          // window.open('http://doc.lliiooiill.cn/')
           break
         }
         default: {

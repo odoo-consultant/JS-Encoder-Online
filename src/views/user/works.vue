@@ -1,7 +1,7 @@
 <template>
   <div id="works">
     <div class="work-list" v-show="!nothing">
-      <div class="skeleton-list-item" v-show="loading" v-for="(item, index) in 12" :key="index">
+      <div class="skeleton-list-item" v-show="loading" v-for="(item, index) in 12" :key="'index_' + index">
         <instance-skeleton :self="true"></instance-skeleton>
       </div>
       <div class="work-list-item" v-show="!loading" v-for="(item, index) in workList" :key="item.exampleId">

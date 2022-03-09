@@ -2,10 +2,10 @@
   <v-app id="app" :class="bgcClass">
     <jse-header v-show="!hideHAF" />
     <section class="app-content" :class="{'app-full-screen':hideHAF}">
-      <router-view :key="routerKey" />
+      <router-view :key="theRouterKey" />
       <jse-snackbar />
     </section>
-    <jse-footer v-show="!hideHAF" />
+    <jse-footer v-show="!hideHAF" :key="$i18n.locale()" />
   </v-app>
 </template>
 
@@ -33,6 +33,13 @@ export default {
     this.setBgc()
   },
   computed: {
+    theRouterKey() {
+      if (this.$route.path === '/') {
+        return this.$i18n.locale() + this.routerKey
+      } else {
+        return this.routerKey
+      }
+    },
     path() {
       return this.$route.path.replace('/', '') || 'home'
     },

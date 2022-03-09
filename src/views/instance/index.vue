@@ -3,7 +3,7 @@
     <div class="loader flex-jcc" v-if="!loaded">
       <div class="loader-content d-flex flex-clo flex-ai">
         <instance-loader class="page-loader"></instance-loader>
-        <span class="tip">{{tip}}</span>
+        <span class="tip">{{$t(tip)}}</span>
       </div>
     </div>
     <instance v-else></instance>
@@ -30,7 +30,7 @@ export default {
       loaded: false,
       clientWidth: window.innerWidth,
       clientHeight: document.documentElement.clientHeight,
-      tip: '实例页面加载中',
+      tip: 'instance.loadingTips',
     }
   },
   mounted() {
@@ -125,7 +125,7 @@ export default {
       })
     },
     async calcSize() {
-      this.tip = '实例页面加载中'
+      this.tip = 'instance.loadingTips'
       return new Promise((resolve) => {
         setTimeout(() => {
           const { clientHeight: clientH, clientWidth: clientW } = document.body
@@ -166,7 +166,7 @@ export default {
         return void 0
       }
       const { username, instanceID: exampleId } = route.params
-      this.tip = '正在请求实例信息'
+      this.tip = 'instance.requestingTips'
       try {
         const res = await this.$http.getWork({ username, exampleId })
         if (res.state) {
@@ -227,9 +227,9 @@ export default {
       this.curInstanceDetail.saved === false
     ) {
       this.$alert({
-        content: '你对当前实例做出的修改将不会被保存',
+        content: this.$t('instance.readonlyTips'),
         okColor: 'error',
-        okText: '退出',
+        okText: this.$t('instance.exitButton'),
       }).then((isLogout) => {
         if (isLogout) {
           IframeHandler.clearIframe()
