@@ -19,7 +19,8 @@ const fontFamList = [
 const fontSizeList = [10, 12, 14, 16, 18, 20, 22, 24, 26]
 
 const defPrepOpts = {
-  HTML: ['HTML', 'Markdown', 'Pug'],
+  // HTML: ['HTML', 'Markdown', 'Pug'],
+  HTML: ['HTML', 'QWEB', 'OWL'],
   CSS: ['CSS', 'Sass', 'Scss', 'Less', 'Stylus'],
   JavaScript: ['JavaScript', 'TypeScript', 'CoffeeScript', 'JSX'],
 }

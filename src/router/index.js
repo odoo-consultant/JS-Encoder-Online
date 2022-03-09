@@ -225,10 +225,11 @@ async function login () {
   const api = Vue.prototype.$http
   // const message = Vue.prototype.$message
   // 在本地存有REMEMBER_ME或在session中存有TMP_REMEMBER_ME(第三方记住我)进行正常登录
+  const loginState = store.state.loginState
   const rememberMe = localStore.get('REMEMBER_ME')
   const oauthRememberMe = sessionStorage.getItem('TMP_REMEMBER_ME')
-  const loginState = store.state.loginState
-  if (!loginState && (rememberMe === 'true' || oauthRememberMe)) {
+
+  if (!loginState && (rememberMe === true || oauthRememberMe)) {
     try {
       const res = await api.verifyLogin()
       if (res.state) {

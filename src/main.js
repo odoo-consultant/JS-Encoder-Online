@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import cookie from './utils/cookie'
+import i18n from './i18n'
 
 import '@assets/css/code-font.css'
 
@@ -15,6 +16,19 @@ import { codemirror } from 'vue-codemirror'
 Vue.use(codemirror)
 
 Vue.config.productionTip = false
+
+
+// Vue.use(vuexI18n.plugin, store)
+// // import predefined localizations
+// import tZhCN from './i18n/zh-CN.js'
+// import tEn from './i18n/en.js'
+// // add translations
+// Vue.i18n.add('zh-CN', tZhCN)
+// Vue.i18n.add('en', tEn)
+// // default locale is english
+// Vue.i18n.set('en')
+
+// console.log(lang.lang)
 
 // 请求方法
 import api from '@service/api'

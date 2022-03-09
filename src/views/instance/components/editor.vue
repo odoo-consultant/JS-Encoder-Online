@@ -1,5 +1,5 @@
 <template>
-  <div id="editor">
+  <div id="editor" :class="'editor-' + layoutPos">
     <codemirror :style="fontStyle" :options="codeOptions" :value="code" v-model="code"
       @cursorActivity="cursorPosChanged" class="code" :class="mdToolbarVisible&&index===0?'md-active':''"
       ref="codeArea">
@@ -19,6 +19,7 @@ export default {
     codeMode: String,
     index: Number,
     showCodeArea: Boolean,
+    layoutPos: String,
   },
   data() {
     this.lintList = ['HTML', 'CSS', 'JavaScript']
@@ -142,7 +143,8 @@ export default {
         'code',
         debounce(function (code) {
           const mode = judgeMode(this.codeMode)
-          this.handleInstanceCode({ mode, code })
+          // this.handleInstanceCode({ mode, code })
+          this.setInstanceCode({ mode, code })
           if (newState) this.$emit('runCode')
         }, newState ? setting.delayTime : 500)
       )
@@ -191,7 +193,8 @@ export default {
       return this.$refs.codeArea.codemirror
     },
     format() {
-      formatCode(this.getCodeMirror(), this.codeMode)
+      var codeMode = this.codeMode === 'OWL' ? 'HTML' : this.codeMode 
+      formatCode(this.getCodeMirror(), codeMode)
     },
     autoComplete(cm, changeObj) {
       // 在写注释的时候或者输入字符不是英文的时候不需要提示
@@ -298,6 +301,16 @@ export default {
   .CodeMirror {
     height: calc(100vh - 121px) !important;
   }
+}
+::v-deep.editor-top {
+  .CodeMirror {
+    height: calc(50vh - 61px) !important;
+  }    
+}
+::v-deep.editor-bottom {
+  .CodeMirror {
+    height: calc(50vh - 61px) !important;
+  }    
 }
 #editor {
   width: 100%;

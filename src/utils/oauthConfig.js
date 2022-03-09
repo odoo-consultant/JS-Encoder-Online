@@ -3,6 +3,6 @@ export default {
     clientID: '62c3a5b4699818b5d1c1',
   },
   gitee: {
-    clientID: 'a1169e70a8897a7911997856abb65956137998c3c79ffdd05c1856150eb7504f',
+    clientID: '6884057023a649e3fa18e7d8aaeb07372519a3237125448f6521ba605389f605',
   },
 }

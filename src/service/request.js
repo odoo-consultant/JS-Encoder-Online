@@ -22,7 +22,7 @@ axios.interceptors.request.use(async config => {
   if (loginState) {
     const token = cookie.get('AUTH_TOKEN')
     if (token) {
-      config.headers.token = token
+      config.headers.session_id = token
     }
   }
   return config

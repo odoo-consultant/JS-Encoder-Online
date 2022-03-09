@@ -16,6 +16,8 @@ const modeStyleList = {
 function judgeMode (edit) {
   switch (edit) {
     case 'HTML':
+    case 'QWEB':
+    case 'OWL':
     case 'Markdown':
     case 'Pug':
       return 'HTML'

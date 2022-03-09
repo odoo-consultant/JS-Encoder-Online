@@ -7,8 +7,8 @@
       </div>
       <div class="main-content">
         <div class="slogan d-flex flex-clo">
-          <span class="slogan-1 title-xl">简洁易用，功能丰富的 WEB 编辑器</span>
-          <span class="slogan-2 title-m">一个分享代码，共同学习的平台</span>
+          <span class="slogan-1 title-xl">{{ $t('home.slogan1') }}</span>
+          <span class="slogan-2 title-m">{{ $t('home.slogan2') }}</span>
         </div>
         <div class="btn-opt">
           <v-btn class="btn-create" x-large color="primary" @click="newWork">创建新实例</v-btn>
@@ -86,6 +86,13 @@ export default {
       ]),
     }
   },
+  // computed: {
+  //   slogan1() {
+  //     console.log(this.$t('home.slogan1'))
+  //     return this.$t('home.slogan1')
+  //   }
+  // },
+
   methods: {
     newWork() {
       this.$router.push({ name: 'NewWork' })

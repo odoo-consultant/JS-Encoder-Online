@@ -9,7 +9,7 @@
               hide-details v-model="searchForm.keyword" @keypress.enter="search">
               <template slot="append">
                 <v-btn class="search-btn" color="primary" absolute x-large :disabled="!searchForm.keyword"
-                  :loading="searchLoading" @click.stop="search">搜索</v-btn>
+                  :loading="searchLoading" @click.stop="search">{{ $t('explore.searchButton') }}</v-btn>
               </template>
             </v-text-field>
           </v-col>

@@ -8,6 +8,12 @@ const instance = {
   setEditorW: (state, width) => {
     state.editorW = width
   },
+  setTopEditorH: (state, height) => {
+    state.topEditorH = height
+  },
+  setBottomEditorH: (state, height) => {
+    state.bottomEditorH = height
+  },
   setIframeW: (state, width) => {
     state.iframeW = width
   },
@@ -21,6 +27,18 @@ const instance = {
   setCurTab: (state, tab) => {
     state.curTab = tab
   },
+  setTopPrep: (state, newPrep) => {
+    state.topPrep = newPrep
+  },  
+  setBottomPrep: (state, newPrep) => {
+    state.bottomPrep = newPrep
+  },
+  setLastTopTab: (state, tab) => {
+    state.lastTopTab = tab
+  },
+  setLastBottomTab: (state, tab) => {
+    state.lastBottomTab = tab
+  },    
   setMdToolbarVisible: (state, visible) => {
     state.mdToolbarVisible = visible
   },

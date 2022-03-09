@@ -1,10 +1,24 @@
 <template>
   <div id="editorTabBar" class="d-flex no-select">
     <div class="tab-list d-flex flex-1" ref="tabList">
-      <div class="editor-tab d-flex flex-jcc flex-ai" v-for="(item, index) in prep" :key="index"
-        :class="curTab === item ? 'active-tab' : ''" @click="setCurTab(item)">
-        <i class="icon iconfont" :class="iconMap[item]"></i>{{ item }}
-      </div>
+        <template v-if="layoutPos === 'top' && topPrep.length > 0 && bottomPrep.length > 0">
+          <div class="editor-tab d-flex flex-jcc flex-ai" v-if="topPrep.includes(item)" v-for="(item, index) in prep" :key="index" 
+            :class="(curTab === item || lastTopTab === item) ? 'active-tab' : ''" @click="setTopTab(item)">
+            <i class="icon iconfont" :class="iconMap[item]"></i>{{ item }}
+          </div>
+        </template>
+        <template v-if="layoutPos === 'bottom' && topPrep.length > 0 && bottomPrep.length > 0">
+          <div class="editor-tab d-flex flex-jcc flex-ai" v-if="bottomPrep.includes(item)" v-for="(item, index) in prep" :key="index"
+            :class="(curTab === item || lastBottomTab === item) ? 'active-tab' : ''" @click="setBottomTab(item)">
+            <i class="icon iconfont" :class="iconMap[item]"></i>{{ item }}
+          </div>
+        </template>
+        <template v-if="bottomPrep.length == 0 || topPrep.length == 0">
+          <div class="editor-tab d-flex flex-jcc flex-ai" v-for="(item, index) in prep" :key="index"
+            :class="curTab === item ? 'active-tab' : ''" @click="setCurTab(item)">
+            <i class="icon iconfont" :class="iconMap[item]"></i>{{ item }}
+          </div>
+        </template>
     </div>
     <div class="tools d-flex flex-sh">
       <div class="tool d-flex flex-ai flex-jcc" v-if="curTab === 'Markdown'" :class="{'active':mdToolbarVisible}"
@@ -35,6 +49,9 @@
 import { mapState, mapMutations } from 'vuex'
 import WheelDirective from '@utils/editor/wheelDirective'
 export default {
+  props: {
+    layoutPos: String,
+  },  
   data() {
     return {
       iconMap: Object.freeze({
@@ -54,19 +71,38 @@ export default {
       toolsList: [{
         label: '格式化代码',
         value: 'format'
+      }, {
+        label: '上下移动',
+        value: 'updown'
       }]
+    }
+  },
+  created() {
+    if (!this.lastTopTab) {
+      this.setLastTopTab(this.topPrep.length > 0 ? this.topPrep[0] : '')
+    }
+    if (!this.lastBottomTab) {
+      this.setLastBottomTab(this.bottomPrep.length > 0 ? this.bottomPrep[0] : '')
     }
   },
   mounted() {
     new WheelDirective(this.$refs.tabList)
   },
   computed: {
-    ...mapState(['prep', 'curTab', 'mdToolbarVisible']),
+    ...mapState(['prep', 'topPrep', 'bottomPrep', 'curTab', 'lastTopTab', 'lastBottomTab', 'mdToolbarVisible']),
   },
   methods: {
-    ...mapMutations(['setCurTab', 'setMdToolbarVisible']),
+    ...mapMutations(['setCurTab', 'setLastTopTab', 'setLastBottomTab', 'setMdToolbarVisible']),
+    setTopTab(tab) {
+      this.setLastTopTab(tab)
+      this.setCurTab(tab)
+    },
+    setBottomTab(tab) {
+      this.setLastBottomTab(tab)
+      this.setCurTab(tab)
+    },
     selectTool(toolName){
-      this.$emit('selectTool', toolName)
+      this.$emit('selectTool', toolName, this.layoutPos)
     }
   },
   components: {},

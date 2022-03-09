@@ -7,9 +7,9 @@
       <v-list>
         <v-list-item link v-for="item in navList" :key="item.name" @click="navJumpTo(item)">
           <v-badge color="primary" dot v-if="item.text==='新特性' && hasNewFeatures">
-            <v-list-item-title>{{item.text}}</v-list-item-title>
+            <v-list-item-title>{{ $t(item.text)}}</v-list-item-title>
           </v-badge>
-          <v-list-item-title v-else>{{item.text}}</v-list-item-title>
+          <v-list-item-title v-else>{{ $t(item.text) }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -24,12 +24,13 @@
       <v-btn class="nav-item rounded-0" depressed v-for="(item, index) in navList" :key="index"
         :plain="curRouteName !== item.name" tile @click="navJumpTo(item)">
         <v-badge color="primary" dot v-if="item.text==='新特性' && hasNewFeatures">
-          {{item.text}}
+          {{ $(item.text) }}
         </v-badge>
-        <span v-else>{{item.text}}</span>
+        <span v-else>{{ $t(item.text) }}</span>
       </v-btn>
     </nav>
     <v-spacer></v-spacer>
+    <localizer />
     <div class="account d-flex flex-ai">
       <header-account />
     </div>
@@ -39,6 +40,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import HeaderAccount from './headerAccount.vue'
+import Localizer from './localizer.vue'
 import localStorage from '@utils/localStorage'
 
 export default {
@@ -46,22 +48,22 @@ export default {
     return {
       navList: Object.freeze([
         {
-          text: '探索',
+          text: 'navList.explore',// 探索
           name: 'Explore',
         },
         {
-          text: '新特性',
+          text: 'navList.features',
           name: 'Features',
         },
         {
-          text: '反馈',
+          text: 'navList.feedback',
           name: 'Feedback',
         },
         {
-          text: '文档',
+          text: 'navList.document',
         },
         {
-          text: 'GitHub',
+          text: 'navList.github',
         },
       ]),
       showNav: false,
@@ -80,11 +82,11 @@ export default {
     ...mapMutations(['setHasNewFeatures']),
     navJumpTo(navItem) {
       switch (navItem.text) {
-        case 'GitHub': {
+        case 'navList.github': {
           window.open('https://github.com/Longgererer/JS-Encoder-Online')
           break
         }
-        case '文档': {
+        case 'navList.document': {
           window.open('http://doc.lliiooiill.cn/')
           break
         }
@@ -105,6 +107,7 @@ export default {
   },
   components: {
     HeaderAccount,
+    Localizer
   },
 }
 </script>

@@ -10,7 +10,7 @@
     </div>
     <div class="following-tip flex-jcc" v-show="showNothingTip">
       <div class="tip-content d-flex flex-clo flex-ai" v-if="isSelfProfile">
-        <span class="text-describe">你还没关注过任何人...</span>
+        <span class="text-describe">{{ $t('followee.desc1') }}</span>
         <span class="text-describe">不如探索一番，没准儿真会有你感兴趣的？</span>
         <router-link to="/explore">
           <v-btn color="primary">

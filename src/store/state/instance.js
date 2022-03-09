@@ -3,7 +3,14 @@ const instance = {
   mdToolbarVisible: false,
   resolveHTML: true,
   prep: ['HTML', 'CSS', 'JavaScript'],
+  /* 上下分割两栏时，上部的语言区*/
+  topPrep: [],
+  bottomPrep: [],
+  lastTopTab: '',
+  lastBottomTab: '',
   editorW: 0,
+  topEditorH: 0,
+  bottomEditorH: 0,
   /* instance */
   instanceCode: {
     HTML: '',

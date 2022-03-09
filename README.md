@@ -2,7 +2,6 @@
   <img width="150" src="./src/assets/logo/logo.svg"/>
 </div>
 
-
 <h1 align="center">JS-Encoder-Online</h1>
 
 <p align="center">👉 一个由 Vue.js 和 Codemirror 构建的前端代码在线编辑分享平台 👈</p>

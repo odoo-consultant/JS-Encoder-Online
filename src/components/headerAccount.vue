@@ -20,11 +20,11 @@
     </div>
     <div class="not-login" v-else>
       <router-link to="/login">
-        <v-btn class="login-btn" depressed color="primary" :small="dense" :class="dense?'radius-2':''">登录
+        <v-btn class="login-btn" depressed color="primary" :small="dense" :class="dense?'radius-2':''">{{ $t('headerAccount.signin')}}
         </v-btn>
       </router-link>
       <router-link to="/signup">
-        <v-btn class="sign-up-btn" depressed color="info" :small="dense" :class="dense?'radius-2':''">注册
+        <v-btn class="sign-up-btn" depressed color="info" :small="dense" :class="dense?'radius-2':''">{{ $t('headerAccount.signup')}}
         </v-btn>
       </router-link>
     </div>

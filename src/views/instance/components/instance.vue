@@ -6,12 +6,28 @@
         <sidebar class="flex-sh"></sidebar>
         <div class="d-flex flex-1 area">
           <div class="code-area d-flex flex-clo" :style="{ width: `${editorW}px` }">
-            <editor-tab-bar @selectTool="selectTool"></editor-tab-bar>
-            <markdown-tools v-if="mdToolbarVisible && curTab === 'Markdown'" :getCodeMirror="getCodeMirror"
-              :getIframeBody="getIframeBody"></markdown-tools>
-            <editor class="flex-1" v-show="item === curTab" v-for="(item, index) in prep" :key="index" :codeMode="item"
-              :index="index" :ref="'editor' + index" @cursorPosChanged="cursorPosChanged"
-              :showCodeArea="item === curTab" @runCode="runCode"></editor>
+            <template v-if="topPrep.length > 0 && bottomPrep.length > 0">
+              <editor-tab-bar @selectTool="selectTool" :layoutPos="'top'"></editor-tab-bar>
+              <markdown-tools v-if="mdToolbarVisible && curTab === 'Markdown'" :getCodeMirror="getCodeMirror"
+                :getIframeBody="getIframeBody"></markdown-tools>
+              <editor class="flex-1" v-show="item === curTab || item === lastTopTab" v-if="topPrep.includes(item)" v-for="(item, index) in prep" :key="index" :codeMode="item"
+                :index="index" :ref="'editor' + index" @cursorPosChanged="cursorPosChanged" :layoutPos="'top'"
+                :showCodeArea="topPrep.includes(curTab) && item === curTab" @runCode="runCode"></editor>
+
+              <!-- <div class="resize resize-vertical borbox" v-if="resizeVisible" @mousedown="editorResize"></div> -->
+              <editor-tab-bar @selectTool="selectTool" :layoutPos="'bottom'"></editor-tab-bar>
+              <editor class="flex-1" v-show="item === curTab || item === lastBottomTab" v-if="bottomPrep.includes(item)" v-for="(item, index) in prep" :key="index" :codeMode="item"
+                :index="index" :ref="'editor' + index" @cursorPosChanged="cursorPosChanged" :layoutPos="'bottom'"
+                :showCodeArea="item === curTab" @runCode="runCode"></editor>
+            </template>
+            <template v-else>
+              <editor-tab-bar @selectTool="selectTool"></editor-tab-bar>
+              <markdown-tools v-if="mdToolbarVisible && curTab === 'Markdown'" :getCodeMirror="getCodeMirror"
+                :getIframeBody="getIframeBody"></markdown-tools>
+              <editor class="flex-1" v-show="item === curTab" v-for="(item, index) in prep" :key="index" :codeMode="item"
+                :index="index" :ref="'editor' + index" @cursorPosChanged="cursorPosChanged" :layoutPos="'full'"
+                :showCodeArea="item === curTab" @runCode="runCode"></editor>
+            </template>
           </div>
           <div class="resize borbox" v-if="resizeVisible" @mousedown="viewResize"></div>
           <div class="view-area d-flex flex-clo" :style="{ width: `${iframeW}px` }">
@@ -88,10 +104,12 @@ export default {
       isCompiling: false,
       cursorPos: { col: 1, ln: 1 },
       showIframeWidth: false,
+      lastTab: '',
     }
   },
   mounted() {
     this.$nextTick(() => {
+
       this.isChildrenMounted = true
       // 初始化快捷键
       new ShortcutHandler().install()
@@ -105,12 +123,18 @@ export default {
   computed: {
     ...mapState([
       'prep',
+      'topPrep', 
+      'bottomPrep',
       'mdToolbarVisible',
       'curTab',
+      'lastTopTab',
+      'lastBottomTab',
       'iframeSVisible',
       'iframeH',
       'consoleH',
       'editorW',
+      'topEditorH',
+      'bottomEditorH',
       'iframeW',
       'instanceCode',
       'instanceSetting',
@@ -137,11 +161,51 @@ export default {
       'setIframeSVisible',
       'setIframeWVisible',
       'setEditorW',
+      'setTopEditorH',
+      'setBottomEditorH',
       'setConsoleInfo',
       'setConsoleInfoCount',
       'setCurInstanceDetail',
       'setIframeInit',
+      'setTopPrep',
+      'setBottomPrep',
+      'setLastTopTab', 
+      'setLastBottomTab', 
     ]),
+
+    editorResize(e) {
+      // 用鼠标拖动分割线改变上下编辑器的高度
+      // // 拖动时需要在iframe上显示一个遮罩层，否则鼠标滑动到iframe中会影响拖动事件监听
+      // this.setIframeSVisible(true)
+      // // 拖动时显示预览窗口宽度
+      // this.setIframeWVisible(true)
+      const starY = e.clientY
+      const topEditorH = document.querySelector('.editor-top .CodeMirror').clientHeight
+      const bottomEditorH = document.querySelector('.editor-bottom .CodeMirror').clientHeight
+      document.onmousemove = (ev) => {
+        const iEvent = ev || event
+        const distance = iEvent.clientY - starY
+        const finH = topEditorH + distance
+        const wholeH = topEditorH + bottomEditorH
+        if (finH > 100 && wholeH - finH > 100) {
+          console.log(finH)
+          this.setTopEditorH(topEditorH + distance)
+          this.setBottomEditorH(bottomEditorH - distance)
+          // this.showIframeWidth = true
+        }
+        document.onmouseup = () => {
+          // this.setIframeSVisible(false)
+          // this.setIframeWVisible(false)
+          document.onmouseup = null
+          document.onmousemove = null
+          // this.showIframeWidth = false
+          // 在拖动时由于编辑窗口宽度改变，需要刷新codemirror来适应新的宽度
+          // for (var i = 0; i < this.prep.length; i++) {
+          //   this.getCodeMirror(i).refresh()
+          // }
+        }
+      }
+    },
     viewResize(e) {
       // 用鼠标拖动分割线改变编辑器和预览窗口的宽度
       // 拖动时需要在iframe上显示一个遮罩层，否则鼠标滑动到iframe中会影响拖动事件监听
@@ -210,7 +274,17 @@ export default {
         })
         await compileJS(code.JavaScript, prep[2]).then((res) => {
           // 将JavaScript源代码通过AST在内部插入可以监听并阻止死循环的代码
-          JSCode = handleLoop(res)
+          // JSCode = handleLoop(res)
+          if (prep[0] == 'OWL') {
+            const sanitizedXML = code.HTML.replace(/<!--[\s\S]*?-->/g, "").replace(/`/g, '\\\`')
+            JSCode = `
+              (async function(TEMPLATES) {
+                ${res}
+              })(\`${sanitizedXML}\`)`;
+              console.log(JSCode)
+          } else {
+            JSCode = res
+          }
         })
         // 因为接下来可能需要动态修改外部链接，因此这里需要深拷贝一下
         links = deepCopy(this.instanceExtLinks)
@@ -222,7 +296,11 @@ export default {
         links.JSLinks = iframeLinks.mdJS
       }
       await compileHTML(code.HTML, prep[0]).then((res) => {
-        HTMLCode = res
+        if (prep[0] == 'OWL') {
+          HTMLCode = ''
+        } else {
+          HTMLCode = res
+        }
       })
       setTimeout(async () => {
         const handler = new IframeHandler(iframe)
@@ -279,14 +357,68 @@ export default {
     changeFullScreenState(visible) {
       this.iframeFullScreen = visible
     },
-    selectTool(toolName){
+    selectTool(toolName, layoutPos){
       if(this.isChildrenMounted){
         switch(toolName){
           case 'format': {
-            const mode = judgeMode(this.curTab)
+            let mode = ''
+            if (layoutPos === 'bottom') {
+              mode = judgeMode(this.lastBottomTab)
+            } else if (layoutPos === 'top') {
+              mode = judgeMode(this.lastTopTab)
+            } else {
+              mode = judgeMode(this.curTab)
+            }
             const tabs = [ 'HTML', 'CSS', 'JavaScript' ]
             const index = tabs.indexOf(mode)
             this.$refs[`editor${index}`][0].format()
+
+            break
+          }
+          case 'updown': {
+            if (layoutPos === 'bottom') {
+              // move to top
+              let newBottomPrep = this.bottomPrep.filter(item => item !== this.lastBottomTab) 
+              let newTopPrep = [].concat(this.topPrep)
+              newTopPrep.push(this.lastBottomTab)
+
+              this.setBottomPrep(newBottomPrep)              
+              this.setTopPrep(newTopPrep)
+
+              // reset lastBottomTab
+              this.setLastBottomTab(newBottomPrep.length > 0 ? newBottomPrep[0] : '')
+              if (newTopPrep.length > 1 && this.curTab != this.lastTopTab) {
+                // reset lastTopTab
+                this.setLastTopTab(this.curTab)
+              }
+            } else if (layoutPos === 'top') {
+              // move to bottom
+              let newTopPrep = this.topPrep.filter(item => item !== this.lastTopTab)
+              let newBottomPrep = [].concat(this.bottomPrep)
+              newBottomPrep.push(this.lastTopTab)
+
+              this.setTopPrep(newTopPrep)
+              this.setBottomPrep(newBottomPrep)
+
+              this.setLastTopTab(newTopPrep.length > 0 ? newTopPrep[0] : '')
+              if (newBottomPrep.length > 1 && this.curTab != this.lastBottomTab) {
+                // reset lastBottomTab
+                this.setLastBottomTab(this.curTab)
+              }
+            } else {
+              // move to bottom
+              let newTopPrep = this.prep.filter(item => item !== this.curTab)
+              let newBottomPrep = []
+              newBottomPrep.push(this.curTab)
+
+              this.setTopPrep(newTopPrep)
+              this.setBottomPrep(newBottomPrep)
+
+              this.setLastTopTab(newTopPrep.length > 0 ? newTopPrep[0] : '')
+              this.setLastBottomTab(newBottomPrep.length > 0 ? newBottomPrep[0] : '')
+            }
+
+            break
           }
         }
       }
@@ -368,6 +500,11 @@ export default {
             border-color: $primary-1;
           }
         }
+        .resize-vertical {
+          width: 100%;
+          height: 4px;
+          cursor: n-resize;
+        }        
         .view-area {
           .iframe-box {
             background-color: $light-1;
