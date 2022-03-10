@@ -3,24 +3,23 @@
     content-class="upload-dialog">
     <v-card>
       <v-card-title>
-        <span class="title-xs">上传文件</span>
+        <span class="title-xs">{{ $t('instance.upload.title') }}</span>
       </v-card-title>
       <v-card-text>
         <div class="d-flex flex-clo">
           <span class="text-xs text-describe">
-            上传本地文件，格式包含
+            {{ $t('instance.upload.headerTips1') }}
             <span class="text-white">html, md, pug, css, sass, scss, less, styl, js, ts, coffee,</span>
-            文件内容将覆盖对应编辑窗口的内容。
+            {{ $t('instance.upload.headerTips2') }}
           </span>
-          <v-checkbox label="分解html文件" dense hide-details></v-checkbox>
-          <span class="text-xs text-describe">选中此选项，编辑器将会把 html 文件中的 html,
-            css 和 javascript 代码以及外部链接分离，代码会覆盖对应编辑器的代码，外部链接会自动添加到库中。</span>
+          <v-checkbox :label="$t('instance.upload.breakdownHtml')" dense hide-details></v-checkbox>
+          <span class="text-xs text-describe">{{ $t('instance.upload.breakdownHtmlTips') }}</span>
           <a class="borbox upload d-flex flex-jcc v-btn" title="" href="javascript:;" @change="chooseFile">
             <input class="upload-input" type="file" ref="fileInput" multiple="multiple">
-            选择文件
+            {{ $t('instance.upload.pickFile') }}
           </a>
           <div class="file-list d-flex flex-clo flex-ai" v-if="fileList.length">
-            <span class="text-sm">待上传文件列表</span>
+            <span class="text-sm">{{ $t('instance.upload.pendingFileList') }}</span>
             <ul>
               <li class="d-flex flex-ai text-sm" v-for="(item, index) in fileList" :key="index">
                 <v-icon dense small>mdi-file</v-icon>
@@ -28,7 +27,7 @@
                 <v-icon class="icon pointer" dense small @click="delFile(index)">mdi-close</v-icon>
               </li>
             </ul>
-            <v-btn color="info" @click="upload">上传文件</v-btn>
+            <v-btn color="info" @click="upload">{{ $t('instance.upload.uploadFile') }}</v-btn>
           </div>
         </div>
       </v-card-text>
@@ -151,9 +150,9 @@ export default {
         this.fileList = []
         this.setHasUploadCode(true)
         this.$refs.fileInput.value = ''
-        this.$message.success('所有文件已全部上传成功！')
+        this.$message.success(this.$t('instance.upload.uploadSuccessTips'))
       } catch (err) {
-        this.$message.error('文件上传过程出错！')
+        this.$message.error(this.$t('instance.upload.uploadErrorMessage'))
       }
     },
   },

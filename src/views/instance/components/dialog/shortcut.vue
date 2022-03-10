@@ -3,11 +3,11 @@
     @click:outside="setVisibleDialogName('')">
     <v-card>
       <v-card-title>
-        <span class="title-xs">快捷键</span>
+        <span class="title-xs">{{ $t('instance.shortcut.title') }}</span>
       </v-card-title>
       <v-card-text>
         <v-tabs align-with-title height="35" v-model="tab">
-          <v-tab>通用</v-tab>
+          <v-tab>{{ $t('instance.shortcut.common') }}</v-tab>
           <v-tab>Markdown</v-tab>
         </v-tabs>
         <v-tabs-items v-model="tab">

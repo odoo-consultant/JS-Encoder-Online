@@ -13,7 +13,7 @@ export default {
 			codeSyntax: 'Multi Languages',
 			markdown: 'Markdown',
 			console: 'Console',
-			cloudStorageDesc: 'Save code to the cloud, share instance links, let more people see your work.',
+			cloudStorageDesc: 'Save code to the cloud, share instance links, let more people know your work.',
 			importExportDesc: 'You can import local code for online editing, or export the code to the local.',
 			customizableDesc: 'Can be personalized according to your coding habits.',
 			codeSyntaxDesc: 'Supports HTML, CSS, and JavaScript languages for compilation and highlighting.',

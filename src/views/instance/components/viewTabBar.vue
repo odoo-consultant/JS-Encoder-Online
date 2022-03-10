@@ -7,10 +7,10 @@
       </div>
     </div>
     <div class="tools d-flex flex-sh">
-      <v-btn height="30" width="30" icon title="刷新" @click="refresh">
+      <v-btn height="30" width="30" icon :title="$t('common.refreshButton')" @click="refresh">
         <i class="icon iconfont icon-zhongzhi"></i>
       </v-btn>
-      <v-btn height="30" width="30" icon title="全屏" @click="fullScreen">
+      <v-btn height="30" width="30" icon :title="$t('common.fullscreenButton')" @click="fullScreen">
         <i class="icon iconfont icon-fangda"></i>
       </v-btn>
     </div>

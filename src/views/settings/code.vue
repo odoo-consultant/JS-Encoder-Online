@@ -1,7 +1,7 @@
 <template>
   <div id="code">
     <div class="code-item code-def-prep d-flex flex-clo">
-      <span class="item-title title-xs">默认预处理器</span>
+      <span class="item-title title-xs">{{ $t('settings.code.title') }}</span>
       <div class="d-flex flex-ai flex-jcb select-opt" v-for="(value, key, index) in prepList" :key="key">
         <span class="sub-title">{{key}}</span>
         <v-select background-color="info" hide-details solo v-model="form.prep[index]" :menu-props="{ offsetY: true }"
@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="code-item code-def-code d-flex flex-clo">
-      <span class="item-title title-xs">默认初始代码</span>
+      <span class="item-title title-xs">{{ $t('settings.code.defaultInitCode') }}</span>
       <div class="d-flex flex-clo code-area" v-for="(value, key, index) in prepList" :key="index">
         <span class="code-area-title">{{form.prep[index]}}</span>
         <v-textarea background-color="info" rows="3" hide-details solo v-model="form.code[key]"
@@ -18,45 +18,45 @@
       </div>
     </div>
     <div class="code-item code-def-code d-flex flex-clo">
-      <span class="item-title title-xs">默认 head</span>
+      <span class="item-title title-xs">{{ $t('settings.code.defaultHead') }}</span>
       <div class="code-area">
-        <v-textarea label="输入你想在 <head> 中添加的标签如 <meta...>" background-color="info" rows="3" hide-details solo
+        <v-textarea :label="$t('settings.code.inputHeadTips')" background-color="info" rows="3" hide-details solo
           v-model="form.headTags" :style="fontStyle">
         </v-textarea>
       </div>
     </div>
     <div class="code-item code-def-indent d-flex flex-clo">
-      <span class="item-title title-xs">代码缩进</span>
-      <v-checkbox label="用等宽空格替换Tab" v-model="form.indent.replace" @change="setIndentReplace"></v-checkbox>
+      <span class="item-title title-xs">{{ $t('settings.code.codeIndent') }}</span>
+      <v-checkbox :label="$t('settings.code.replaceTabWithSpace')" v-model="form.indent.replace" @change="setIndentReplace"></v-checkbox>
       <div class="d-flex flex-ai">
-        <span class="sub-title">缩进数</span>
+        <span class="sub-title">{{ $t('settings.code.codeIndentNumber') }}</span>
         <v-slider color="primary" ticks="always" step="2" thumb-label hide-details v-model="form.indent.width" :max="8"
           @change="setIndentWidth">
         </v-slider>
       </div>
     </div>
     <div class="code-item code-def-font d-flex flex-clo">
-      <span class="item-title title-xs">字体</span>
+      <span class="item-title title-xs">{{ $t('settings.code.fontFamily') }}</span>
       <div class="d-flex flex-ai font-opts">
-        <span class="sub-title">字体</span>
+        <span class="sub-title">{{ $t('settings.code.fontFamily') }}</span>
         <v-select class="family-select" solo hide-details dense v-model="form.font.family" :items="fontFamList"
           :menu-props="{ offsetY: true }">
         </v-select>
       </div>
       <div class="d-flex flex-ai font-opts">
-        <span class="sub-title">字号(px)</span>
+        <span class="sub-title">{{ $t('settings.code.fontSize') }}</span>
         <v-select class="size-select" dense solo hide-details v-model="form.font.size" :items="fontSizeList"
           :menu-props="{ offsetY: true }" @change="refreshEditor">
         </v-select>
       </div>
       <div class="d-flex flex-ai font-opts">
-        <span class="sub-title">预览</span>
+        <span class="sub-title">{{ $t('settings.code.preview') }}</span>
         <codemirror class="preview-codemirror" ref="editor" :style="fontStyle" :options="codeOptions"
           :value="editorCode">
         </codemirror>
       </div>
     </div>
-    <v-btn block x-large color="primary" @click="save">保存</v-btn>
+    <v-btn block x-large color="primary" @click="save">{{ $t('common.saveButton') }}</v-btn>
   </div>
 </template>
 
@@ -143,7 +143,7 @@ export default {
     save() {
       const settings = this.form
       localStore.set('JSE_PERSONAL_SETTINGS', JSON.stringify(settings))
-      this.$message.success('编码设置保存成功！')
+      this.$message.success(this.$t('settings.code.saveSuccessTips'))
     },
   },
   components: {

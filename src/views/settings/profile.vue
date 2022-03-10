@@ -2,8 +2,8 @@
   <div id="profile">
     <v-form autocomplete="off" ref="form">
       <div class="profile-item profile-avatar d-flex flex-clo">
-        <span class="item-title title-xs">头像</span>
-        <span class="text-sm text-describe">从你的设备上选取一张 JPG 或 PNG 图片作为新的头像。</span>
+        <span class="item-title title-xs">{{ $t('settings.profile.title') }}</span>
+        <span class="text-sm text-describe">{{ $t('settings.profile.headerTips') }}</span>
         <div class="item-content d-flex flex-ai">
           <v-avatar size="150" color="primary">
             <img v-if="form.avatar||imgUrl" :src="imgUrl" />
@@ -12,39 +12,39 @@
           <v-btn class="upload-btn" color="info">
             <a class="upload-a" href="javascript:;" @change="chooseFile">
               <input class="upload-input pointer" ref="fileInput" type="file" accept="image/png,image/jpg,image/jpeg"
-                multiple="multiple" />上传头像
+                multiple="multiple" />{{ $t('settings.profile.uploadButton') }}
             </a>
           </v-btn>
         </div>
       </div>
       <v-dialog persistent max-width="350" v-model="cropDialogVisible">
         <v-card>
-          <v-card-title class="text-h5">裁剪图片</v-card-title>
+          <v-card-title class="text-h5">{{ $t('settings.profile.cropImageButton') }}</v-card-title>
           <cropper ref="cropper" v-if="cropConf.cropVisible" :src="cropConf.cropUrl"></cropper>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="darken-1" text @click="closeCrop">取消</v-btn>
-            <v-btn color="primary" text @click="crop">确定</v-btn>
+            <v-btn color="darken-1" text @click="closeCrop">{{ $t('common.cancelButton') }}</v-btn>
+            <v-btn color="primary" text @click="crop">{{ $t('common.confirmButton') }}</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
       <div class="profile-item profile-nickname d-flex flex-clo">
-        <span class="item-title title-xs">昵称</span>
-        <v-text-field solo label="请填写昵称" hint="昵称长度小于25" background-color="info" v-model="form.nickname"
+        <span class="item-title title-xs">{{ $t('common.nickname') }}</span>
+        <v-text-field solo :label="$t('settings.profile.nicknameRequiredTips')" :hint="$t('settings.profile.nicknameMaxLengthTips')" background-color="info" v-model="form.nickname"
           :rules="rules.nickname"></v-text-field>
       </div>
       <div class="profile-item profile-about d-flex flex-clo">
-        <span class="item-title title-xs">关于你</span>
-        <v-textarea solo label="让别人更加了解你" background-color="info" max-length="150" counter="150" rows="3" no-resize
+        <span class="item-title title-xs">{{ $t('settings.profile.about') }}</span>
+        <v-textarea solo :label="$t('settings.profile.aboutTips')" background-color="info" max-length="150" counter="150" rows="3" no-resize
           v-model="form.about" :rules="rules.about">
         </v-textarea>
       </div>
       <div class="profile-item profile-about d-flex flex-clo">
-        <span class="item-title title-xs">邮箱</span>
-        <v-text-field solo label="你的联系邮箱" background-color="info" v-model="form.email" :rules="rules.email">
+        <span class="item-title title-xs">{{ $t('common.email') }}</span>
+        <v-text-field solo :label="$t('settings.profile.emailTips')" background-color="info" v-model="form.email" :rules="rules.email">
         </v-text-field>
       </div>
-      <v-btn color="primary" block x-large :loading="loading" @click="save">保存</v-btn>
+      <v-btn color="primary" block x-large :loading="loading" @click="save">{{ $t('common.saveButton') }}</v-btn>
     </v-form>
   </div>
 </template>
@@ -69,11 +69,11 @@ export default {
       },
       rules: {
         nickname: [
-          (v) => !!v || '请填写昵称',
-          (v) => (v && v.length <= 25) || '昵称长度不能大于25！',
+          (v) => !!v || this.$t('settings.profile.nicknameRequiredTips'),
+          (v) => (v && v.length <= 25) || this.$t('settings.profile.nicknameMaxLengthTips'),
         ],
-        about: [(v) => !v || v.length <= 150 || '关于内容长度不能超过150！'],
-        email: [(v) => !v || regexpList.email.test(v) || '邮箱格式错误！'],
+        about: [(v) => !v || v.length <= 150 || this.$t('settings.profile.abountMaxLengthTips')],
+        email: [(v) => !v || regexpList.email.test(v) || this.$t('settings.profile.emailFormatTips')],
       },
       loading: false,
       cropDialogVisible: false,
@@ -123,12 +123,12 @@ export default {
       const isLt2M = file.size / 1024 / 1024 <= 2
       if (!allow) {
         this.$alert({
-          content: '文件格式错误！',
+          content: this.$t('settings.profile.fileFormatTips'),
           showCancel: false,
         })
       } else if (!isLt2M) {
         this.$alert({
-          content: '图片大小不能超过2M！',
+          content: this.$t('settings.profile.imageMaxSizeTips'),
           showCancel: false,
         })
       }
@@ -187,7 +187,7 @@ export default {
         }
         const res = await this.$http.updateUserInfo(userInfo)
         if (res.state) {
-          this.$message.success('个人设置保存成功！')
+          this.$message.success(this.$t('settings.profile.saveSuccessTips'))
           // 用户信息更新成功之后更新前端数据
           this.setCurUserDetail({
             nickname,

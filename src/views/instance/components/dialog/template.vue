@@ -8,11 +8,11 @@
   >
     <v-card>
       <v-card-title>
-        <span class="title-xs">模板</span>
+        <span class="title-xs">{{ $t('instance.template.title') }}</span>
       </v-card-title>
       <v-card-text>
         <div class="templates d-flex flex-clo">
-          <span class="temp-title">选择你的模板(这可能会覆盖你当前实例的代码和外部链接)</span>
+          <span class="temp-title">{{ $t('instance.template.headerTips') }}</span>
           <div class="template-list">
             <div
               class="template pointer d-flex flex-clo flex-ai flex-jcc"
@@ -20,7 +20,7 @@
               :key="template.label"
               @click="selectTemplate(template.label)"
             >
-              <img :src="`/qiNiuCdn/${template.svgName}.svg`" :alt="template.label" />
+              <img :src="getTemplateIcon(template.svgName)" :alt="template.label" />
               <span class="name">{{ template.label }}</span>
             </div>
           </div>
@@ -39,6 +39,18 @@ export default {
       visible: false,
       publicPath: process.env.BASE_URL,
       templatesInfo: {
+        OWL: {
+          preprocessor: ['OWL', 'CSS', 'JavaScript'],
+          links: {
+            cssLinks: [],
+            JSLinks: ['https://odoo.github.io/owl/owl.js']
+          },
+          code: {
+            HTML: '<templates><div></div></templates>',
+            CSS: '',
+            JavaScript: ''
+          }
+        },
         QWEB: {
           preprocessor: ['QWEB', 'CSS', 'JavaScript'],
           links: {
@@ -65,19 +77,7 @@ export default {
             CSS: '',
             JavaScript: ''
           }
-        },    
-        OWL: {
-          preprocessor: ['OWL', 'CSS', 'JavaScript'],
-          links: {
-            cssLinks: [],
-            JSLinks: ['https://odoo.github.io/owl/owl.js']
-          },
-          code: {
-            HTML: '<h1>This is a template of OWL!</h1>',
-            CSS: '',
-            JavaScript: ''
-          }
-        },    
+        },     
         // Vanilla: {
         //   preprocessor: ['HTML', 'CSS', 'JavaScript'],
         //   links: {
@@ -143,8 +143,8 @@ export default {
         // },
       },
       templateList: [
-        { label: 'QWEB', svgName: 'QWeb' },
-        { label: 'OWL', svgName: 'OWL' },
+        { label: 'OWL', svgName: '/images/owl.svg' },
+        { label: 'QWEB', svgName: '/images/qweb.svg' },
         // { label: 'Vanilla', svgName: 'Vanilla' },
         // { label: 'Vue2', svgName: 'Vue' },
         // { label: 'Vue3', svgName: 'Vue' },
@@ -173,6 +173,15 @@ export default {
     closeDialog () {
       this.setVisibleDialogName('')
     },
+
+    getTemplateIcon(filename) {
+      if (filename.startsWith('/')) {
+        return require(`../../../../assets${filename}`)
+      } else {
+        return `/qiNiuCdn/${filename}.svg`
+      }
+    },
+
     selectTemplate (template) {
       const { preprocessor, links, code } = this.templatesInfo[template]
       this.setAllPrep(preprocessor)

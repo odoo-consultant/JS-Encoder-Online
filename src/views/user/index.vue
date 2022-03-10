@@ -6,15 +6,15 @@
         <v-img v-if="curUserDetail.avatar" :src="qiNiuImgLink+curUserDetail.avatar"></v-img>
         <span class="white--text text-h4" v-else>{{curUserDetail.nickname|preNickname}}</span>
         <router-link to="/settings" v-if="isSelfProfile">
-          <v-btn class="edit-btn" title="设置" fab x-small>
+          <v-btn class="edit-btn" title="$t('common.config')" fab x-small>
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </router-link>
-        <v-btn class="edit-btn" title="取消关注" color="#777777" fab x-small v-else-if="isMyFollow" :loading="followLoading"
+        <v-btn class="edit-btn" title="$t('common.unfollowButton')" color="#777777" fab x-small v-else-if="isMyFollow" :loading="followLoading"
           @click="unFollow">
           <v-icon>mdi-account-remove</v-icon>
         </v-btn>
-        <v-btn class="edit-btn" title="关注" color="primary" fab x-small v-else-if="loginState&&!isMyFollow"
+        <v-btn class="edit-btn" title="$t('common.follow')" color="primary" fab x-small v-else-if="loginState&&!isMyFollow"
           :loading="followLoading" @click="follow">
           <v-icon>mdi-account-plus</v-icon>
         </v-btn>
@@ -46,7 +46,7 @@
         <v-col cols="2" class="col-space"></v-col>
         <v-spacer></v-spacer>
         <v-col class="flex-ai" style="display:flex" md="2" sm="3" cols="11" v-show="showSort">
-          <span class="flex-sh sort-title" v-show="showSort">排序：</span>
+          <span class="flex-sh sort-title" v-show="showSort">{{ $t('common.sortLabel') }}:</span>
           <v-select v-show="showSort" v-model="sortBy" hide-details solo :items="sortList"
             :menu-props="{ offsetY: true }" @change="switchRoute()">
           </v-select>
@@ -61,7 +61,7 @@
                 </v-btn>
               </router-link>
             </template>
-            <span>新建实例</span>
+            <span>{{ $t('common.createNewButton') }}</span>
           </v-tooltip>
         </v-col>
       </v-row>
@@ -70,8 +70,8 @@
           @updateNum="updateNum"></router-view>
       </div>
       <div class="page-opt flex-jcc" v-show="!isFirstPage||!isLastPage">
-        <v-btn class="before-btn" :disabled="isFirstPage" @click="switchPage(-1)">上一页</v-btn>
-        <v-btn color="primary" class="after-btn" :disabled="isLastPage" @click="switchPage(1)">下一页</v-btn>
+        <v-btn class="before-btn" :disabled="isFirstPage" @click="switchPage(-1)">{{ $t('common.prevPage') }}</v-btn>
+        <v-btn color="primary" class="after-btn" :disabled="isLastPage" @click="switchPage(1)">{{ $t('common.nextPage') }}</v-btn>
       </div>
     </div>
   </div>
@@ -86,7 +86,7 @@ export default {
   data() {
     return {
       qiNiuImgLink,
-      tabList: [],
+      // tabList: [],
       num: {
         works: 0,
         liked: 0,
@@ -94,11 +94,11 @@ export default {
         followers: 0,
         cycleBin: 0,
       },
-      sortList: Object.freeze([
-        { text: '创建时间', value: 0 },
-        { text: '更新日期', value: 1 },
-        { text: '喜爱度', value: 2 },
-      ]),
+      // sortList: Object.freeze([
+      //   { text: '创建时间', value: 0 },
+      //   { text: '更新日期', value: 1 },
+      //   { text: '喜爱度', value: 2 },
+      // ]),
       page: 1,
       sortBy: 0,
       showTabItems: false,
@@ -130,10 +130,49 @@ export default {
     },
     about() {
       const about = this.curUserDetail.about
-      return about || (!this.isSelfProfile ? 'ta还没想好怎么描述自己...' : '')
+      return about || (!this.isSelfProfile ? this.$t('user.noProfileDescTips') : '')
     },
     showSort() {
       return ['Works', 'Liked'].includes(this.$route.name)
+    },
+    sortList() { 
+      return Object.freeze([
+        { text: this.$t('common.createDate'), value: 0 },
+        { text: this.$t('common.updateDate'), value: 1 },
+        { text: this.$t('common.popularity'), value: 2 },
+      ])
+    },
+    tabList() {
+      const list = [
+        {
+          name: this.$t('common.work'),
+          route: 'Works',
+          path: 'works',
+        },
+        {
+          name: this.$t('common.like'),
+          route: 'Liked',
+          path: 'liked',
+        },
+        {
+          name: this.$t('common.followee'),
+          route: 'Following',
+          path: 'following',
+        },
+        {
+          name: this.$t('common.follower'),
+          route: 'Followers',
+          path: 'followers',
+        },
+      ]
+      if (this.isSelfProfile) {
+        list.push({
+          name: this.$t('common.recycleBin'),
+          route: 'CycleBin',
+          path: 'cycleBin',
+        })
+      }
+      return list
     },
   },
   methods: {
@@ -142,7 +181,7 @@ export default {
       this.showTabItems = false
       this.userInfoLoading = true
       await this.getUserInfo()
-      this.handleTabs()
+      // this.handleTabs()
       const {
         works,
         liked,
@@ -181,38 +220,38 @@ export default {
       this.isFirstPage = isFirstPage
       this.isLastPage = isLastPage
     },
-    handleTabs() {
-      const tabList = [
-        {
-          name: '实例',
-          route: 'Works',
-          path: 'works',
-        },
-        {
-          name: '喜爱',
-          route: 'Liked',
-          path: 'liked',
-        },
-        {
-          name: '关注',
-          route: 'Following',
-          path: 'following',
-        },
-        {
-          name: '粉丝',
-          route: 'Followers',
-          path: 'followers',
-        },
-      ]
-      if (this.isSelfProfile) {
-        tabList.push({
-          name: '回收站',
-          route: 'CycleBin',
-          path: 'cycleBin',
-        })
-      }
-      this.tabList = Object.freeze(tabList)
-    },
+    // handleTabs() {
+    //   const tabList = [
+    //     {
+    //       name: this.$t('common.work'),
+    //       route: 'Works',
+    //       path: 'works',
+    //     },
+    //     {
+    //       name: this.$t('common.like'),
+    //       route: 'Liked',
+    //       path: 'liked',
+    //     },
+    //     {
+    //       name: this.$t('common.followee'),
+    //       route: 'Following',
+    //       path: 'following',
+    //     },
+    //     {
+    //       name: this.$t('common.follower'),
+    //       route: 'Followers',
+    //       path: 'followers',
+    //     },
+    //   ]
+    //   if (this.isSelfProfile) {
+    //     tabList.push({
+    //       name: this.$t('common.recycleBin'),
+    //       route: 'CycleBin',
+    //       path: 'cycleBin',
+    //     })
+    //   }
+    //   this.tabList = Object.freeze(tabList)
+    // },
     updateNum(key, newNum) {
       // 在子路由列表重新查询的时候更新数据
       this.num[key] = newNum
@@ -267,7 +306,7 @@ export default {
     },
     async follow() {
       if (!this.loginState) {
-        this.$message.info('请登录后再进行相关操作！')
+        this.$message.info(this.$t('common.loginRequiredTips'))
         return void 0
       }
       this.followLoading = true
@@ -290,7 +329,7 @@ export default {
     },
     async unFollow() {
       if (!this.loginState) {
-        this.$message.info('请登录后再进行相关操作！')
+        this.$message.info(this.$t('common.loginRequiredTips'))
         return void 0
       }
       this.followLoading = true

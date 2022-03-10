@@ -2,20 +2,20 @@
   <div id="resetPwd" class="d-flex flex-jcc">
     <div class="reset-pwd-content">
       <div class="reset-pwd-title d-flex flex-clo">
-        <span class="title-xl">重置密码</span>
-        <span class="text-sm text-describe">重置成功后将返回登录页面</span>
+        <span class="title-xl">{{ $t('settings.resetPassword.title') }}</span>
+        <span class="text-sm text-describe">{{ $t('settings.resetPassword.headerTips') }}</span>
       </div>
       <div class="reset-pwd-form">
         <v-form autocomplete="off" ref="form">
-          <v-text-field label="密码" autocomplete="new-password" color="primary" hint="密码必须包含字母数字和下划线且长度为6-12"
+          <v-text-field :label="$t('common.password')" autocomplete="new-password" color="primary" :hint="$t('settings.resetPassword.passwordMaxLengthTips')"
             :append-icon="showPwd ? 'mdi-eye' : 'mdi-eye-off'" :type="showPwd ? 'text' : 'password'" outlined
             v-model="form.password" :rules="rules.password" @click:append="showPwd = !showPwd">
           </v-text-field>
-          <v-text-field label="重复密码" autocomplete="new-password" outlined color="primary" v-model="form.rePassword"
+          <v-text-field :label="$t('signup.rePassword')" autocomplete="new-password" outlined color="primary" v-model="form.rePassword"
             :append-icon="showRePwd ? 'mdi-eye' : 'mdi-eye-off'" :type="showRePwd ? 'text' : 'password'"
             :rules="rules.rePassword" :disabled="!isPwdRight" @click:append="showRePwd = !showRePwd">
           </v-text-field>
-          <v-btn color="primary" block x-large :loading="loading" @click="reset">重置密码</v-btn>
+          <v-btn color="primary" block x-large :loading="loading" @click="reset">{{$t('settings.resetPassword.resetButton')}}</v-btn>
         </v-form>
       </div>
     </div>
@@ -39,14 +39,14 @@ export default {
       },
       rules: {
         password: [
-          (v) => !!v || '请填写密码！',
+          (v) => !!v || this.$t('settings.resetPassword.passwordRequiredTips'),
           (v) =>
-            (v && v.length >= 6 && v.length <= 12) || '密码长度必须在6-12间！',
-          (v) => (v && this.isPwdRight) || '密码必须包含字母和数字和下划线！',
+            (v && v.length >= 6 && v.length <= 12) || this.$t('settings.resetPassword.passwordMaxLengthTips'),
+          (v) => (v && this.isPwdRight) || this.$t('settings.resetPassword.passwordFormatTips'),
         ],
         rePassword: [
-          (v) => !!v || '请确认密码！',
-          (v) => (v && v === this.form.password) || '两次密码不一致！',
+          (v) => !!v || this.$t('settings.resetPassword.rePasswordRequiredTips'),
+          (v) => (v && v === this.form.password) || this.$t('settings.resetPassword.rePasswordFormatTips'),
         ],
       },
     }
@@ -83,11 +83,11 @@ export default {
           config
         )
         if (res.state) {
-          this.$message.success('重置密码成功！')
+          this.$message.success(this.$t('settings.resetPassword.resetSuccessTips'))
           cookie.del('TMP_EMAIL_TOKEN')
           this.$router.replace({ path: '/login' })
         } else {
-          this.$message.error('重置密码失败！')
+          this.$message.error(this.$t('settings.resetPassword.resetErrorMessage'))
         }
       } catch (err) {
         console.log(err)

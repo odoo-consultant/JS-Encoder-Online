@@ -1,7 +1,7 @@
 <template>
   <div id="cycleBin">
     <v-card class="cycle-bin-tip d-flex" color="error" v-if="showTip">
-      您的实例在放入回收站的7天内可恢复为正常状态，逾期则自动删除。
+      {{ $t('recycleBin.headerTips') }}
       <v-spacer></v-spacer>
       <v-icon class="pointer" @click="showTip=false">mdi-close</v-icon>
     </v-card>
@@ -11,19 +11,19 @@
         :key="item.exampleId">
         <div class="d-flex flex-clo">
           <span class="instance-title">{{item.exampleName}}</span>
-          <span class="delete-time text-describe text-sm">删除日期：{{item.updateTime}}</span>
+          <span class="delete-time text-describe text-sm">{{ $t('recycleBin.deleteTime') }}: {{item.updateTime}}</span>
         </div>
         <v-spacer></v-spacer>
         <v-btn class="restore-btn" color="#333333" @click="restore(item.exampleId,index)"
-          :loading="restoreLoading&&curIndex===index">恢复</v-btn>
+          :loading="restoreLoading&&curIndex===index">{{ $t('recycleBin.restore')}}</v-btn>
         <v-btn class="delete-btn" color="error" @click="perDelete(item.exampleId,index)"
-          :loading="deleteLoading&&curIndex===index">永久删除</v-btn>
+          :loading="deleteLoading&&curIndex===index">{{ $t('recycleBin.purge')}}</v-btn>
       </v-card>
     </div>
     <div class="cycle-tip" v-show="showNothing">
       <div class="d-flex flex-clo flex-jcc flex-ai">
         <span class="icon-cycle">🗑</span>
-        <span class="text-describe text-sm">回收站空空如也</span>
+        <span class="text-describe text-sm">{{ $t('recycleBin.noDataTips')}}</span>
       </div>
     </div>
   </div>
@@ -93,8 +93,8 @@ export default {
     },
     async perDelete(exampleId, index) {
       const confRes = await this.$alert({
-        content: '该实例永久删除后将不可恢复！',
-        okText: '确认并继续',
+        content: this.$t('recycleBin.confirmTips'),
+        okText: this.$t('recycleBin.confirmButton'),
         okColor: 'error',
       })
       if (confRes) {

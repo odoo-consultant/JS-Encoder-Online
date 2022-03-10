@@ -2,23 +2,23 @@
   <v-dialog id="library" max-width="500" content-class="library-dialog" v-model="visible" @click:outside="closeDialog">
     <v-card>
       <v-card-title>
-        <span class="title-xs">库</span>
+        <span class="title-xs">{{ $t('instance.library.title') }}</span>
       </v-card-title>
       <v-card-text>
         <v-card class="d-flex flex-ai error-tip" color="error" v-if="cdnError">
           <div class="d-flex flex-ai">
-            <span>获取CDN列表失败</span>
+            <span>{{ $t('instance.library.CDNErrorTips') }}</span>
           </div>
           <v-spacer></v-spacer>
           <div>
-            <v-btn small @click="loadLibs" :loading="loadingLibs">重试</v-btn>
+            <v-btn small @click="loadLibs" :loading="loadingLibs">{{ $t('instance.library.retry') }}</v-btn>
           </div>
         </v-card>
         <div class="d-flex flex-clo">
-          <span class="text-md lib-title">外部样式</span>
-          <span class="text-xs text-describe">你所添加的外部样式，将按照顺序在本地CSS执行之前依次执行，支持http和https协议链接。</span>
-          <v-autocomplete flat dense solo hide-details background-color="info" label="查找外部样式..." return-object
-            item-text="name" no-data-text="无匹配CDN" :items="cssLibList"
+          <span class="text-md lib-title">{{ $t('instance.library.outerCss') }}</span>
+          <span class="text-xs text-describe">{{ $t('instance.library.outerCssTips') }}</span>
+          <v-autocomplete flat dense solo hide-details background-color="info" :label="$t('instance.library.searchingOuterCss')" return-object
+            item-text="name" :no-data-text="$t('instance.library.noMatchedCDN')" :items="cssLibList"
             :menu-props="{ offsetY: true, closeOnContentClick: true}">
             <template v-slot:item="{ item }">
               <v-list-item class="d-flex text-sm" link @click="addLink('css', item)">
@@ -44,12 +44,12 @@
               </v-btn>
             </template>
           </v-text-field>
-          <v-btn class="add-btn" block color="info" @click="showCSSInput++">添加外部样式</v-btn>
-          <span class="text-md lib-title">外部脚本</span>
-          <span class="text-xs text-describe">你所添加的外部脚本，将按照顺序在本地JavaScript执行之前依次执行，支持http和https协议链接</span>
-          <v-autocomplete :items="jsLibList" flat dense solo hide-details background-color="info" label="查找外部脚本..."
+          <v-btn class="add-btn" block color="info" @click="showCSSInput++">{{ $t('instance.library.addOuterCss') }}</v-btn>
+          <span class="text-md lib-title">{{ $t('instance.library.outerJs') }}</span>
+          <span class="text-xs text-describe">{{ $t('instance.library.outerJsTips') }}</span>
+          <v-autocomplete :items="jsLibList" flat dense solo hide-details background-color="info" :label="$t('instance.library.searchingOuterJs')"
             return-object item-text="name" :menu-props="{ offsetY: true, closeOnContentClick: true}"
-            no-data-text="无匹配CDN">
+            :no-data-text="$t('instance.library.noMatchedCDN')">
             <template v-slot:item="{ item }">
               <v-list-item class="d-flex text-sm" link @click="addLink('js', item)">
                 <span style="margin-right:20px" class="flex-1">{{ item.name }}</span>
@@ -74,7 +74,7 @@
               </v-btn>
             </template>
           </v-text-field>
-          <v-btn class="add-btn" block color="info" @click="showJSInput++">添加外部脚本</v-btn>
+          <v-btn class="add-btn" block color="info" @click="showJSInput++">{{ $t('instance.library.addOuterJs') }}</v-btn>
         </div>
       </v-card-text>
     </v-card>

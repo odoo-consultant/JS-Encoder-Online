@@ -2,17 +2,17 @@
   <v-dialog id="instanceConfig" max-width="500" v-model="visible" @click:outside="setVisibleDialogName('')">
     <v-card>
       <v-card-title>
-        <span class="title-sm">实例设置</span>
+        <span class="title-sm">{{ $t('instance.config.title') }}</span>
       </v-card-title>
       <v-card-text style="padding-bottom:0">
         <v-form class="form d-flex flex-clo" ref="form">
-          <span class="form-item-title">实例标题</span>
-          <v-text-field class="form-item-input" solo label="填写实例标题..." background-color="info" v-model="form.title"
+          <span class="form-item-title">{{ $t('instance.config.workNameLabel') }}</span>
+          <v-text-field class="form-item-input" solo :label="$t('instance.config.inputWorkNameTips')" background-color="info" v-model="form.title"
             :rules="rules.title">
           </v-text-field>
-          <span class="form-item-title">实例标签</span>
-          <span class="text-describe">添加或修改实例标签，标签最多三个，每个标签长度小于15</span>
-          <v-combobox class="form-item-input" background-color="info" clearable multiple chips solo label="添加实例标签..."
+          <span class="form-item-title">{{ $t('instance.config.workTag') }}</span>
+          <span class="text-describe">{{ $t('instance.config.workTagTips') }}</span>
+          <v-combobox class="form-item-input" background-color="info" clearable multiple chips solo label="$t('instance.config.inputWorkTagTips')"
             hide-selected v-model="form.tags" :items="tagList" :disable-lookup="form.tags.length>=3" :rules="rules.tags"
             @change="tagsChange">
             <template v-slot:selection="{ attrs, item, select, selected }">
@@ -22,16 +22,16 @@
               </v-chip>
             </template>
           </v-combobox>
-          <span class="form-item-title">公共性</span>
-          <span class="text-describe">将实例设置为私有，其他人将不会访问到你的实例。但每位用户最多只能有5个私有实例</span>
+          <span class="form-item-title">{{ $t('instance.config.workVisibility') }}</span>
+          <span class="text-describe">{{ $t('instance.config.workVisibilityTips') }}</span>
           <v-radio-group v-model="form.ispublic" row mandatory>
-            <v-radio label="公共" :value="true"></v-radio>
-            <v-radio label="私有" :value="false"></v-radio>
+            <v-radio :label="$t('instance.config.visibilityPublic')" :value="true"></v-radio>
+            <v-radio :label="$t('instance.config.visibilityPrivate')" :value="false"></v-radio>
           </v-radio-group>
         </v-form>
       </v-card-text>
       <v-card-actions style="padding-bottom:20px">
-        <v-btn class="save-btn" color="primary" block :loading="loading" @click="saveConfig">保存</v-btn>
+        <v-btn class="save-btn" color="primary" block :loading="loading" @click="saveConfig">{{ $t('common.saveButton') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -49,19 +49,19 @@ export default {
         tags: [],
         ispublic: true,
       },
-      rules: {
-        title: [(v) => !!v || '请填写实例标题！'],
-        tags: [
-          (v) => {
-            for (let i = v.length - 1; i >= 0; i--) {
-              if (v[i].length > 15) {
-                return '每个标签长度不能大于15！'
-              }
-            }
-            return true
-          },
-        ],
-      },
+      // rules: {
+      //   title: [(v) => !!v || '请填写实例标题！'],
+      //   tags: [
+      //     (v) => {
+      //       for (let i = v.length - 1; i >= 0; i--) {
+      //         if (v[i].length > 15) {
+      //           return '每个标签长度不能大于15！'
+      //         }
+      //       }
+      //       return true
+      //     },
+      //   ],
+      // },
       tagList: [],
       loading: false,
     }
@@ -76,6 +76,21 @@ export default {
   },
   computed: {
     ...mapState(['visibleDialogName', 'curInstanceDetail']),
+    rules() {
+      return {
+        title: [(v) => !!v || this.$t('instance.config.titleRequiredTips')],
+        tags: [
+          (v) => {
+            for (let i = v.length - 1; i >= 0; i--) {
+              if (v[i].length > 15) {
+                return this.$t('instance.config.tagMaxLengthTips')
+              }
+            }
+            return true
+          },
+        ],
+      }
+    },
   },
   watch: {
     visibleDialogName(name) {
@@ -105,15 +120,15 @@ export default {
         if (res.state) {
           this.setVisibleDialogName('')
           this.setCurInstanceDetail({ title, tags: tags.toString() })
-          this.$message.success('实例设置修改成功！')
+          this.$message.success(this.$t('instance.config.configSuccessTips'))
         } else {
           switch (res.msg) {
             case 1: {
-              this.$message.error('私有实例已达上限！')
+              this.$message.error(this.$t('instance.config.noMorePrivateWorks'))
               break
             }
             default: {
-              this.$message.error('实例设置修改失败！')
+              this.$message.error(this.$t('instance.config.configErrorMessage'))
             }
           }
         }

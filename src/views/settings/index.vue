@@ -11,7 +11,7 @@
       </v-col>
     </v-row>
     <div class="side-menu d-flex flex-clo flex-end">
-      <span class="menu-title title-lg">设置</span>
+      <span class="menu-title title-lg">{{ $t('settings.title') }}</span>
       <v-card class="menu-card" color="info" rounded="lg">
         <v-list class="menu-list">
           <v-list-item-group color="info" :value="curRouteName">
@@ -21,7 +21,7 @@
                 <v-icon class="icon">{{item.icon}}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title>{{item.text}}</v-list-item-title>
+                <v-list-item-title>{{$t(item.text)}}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -45,17 +45,17 @@ export default {
     return {
       menuList: Object.freeze([
         {
-          text: '个人设置',
+          text: 'settings.menuProfile',
           name: 'Profile',
           icon: 'mdi-account-edit-outline',
         },
         {
-          text: '编码设置',
+          text: 'settings.menuCode',
           name: 'Code',
           icon: 'mdi-code-tags',
         },
         {
-          text: '账户设置',
+          text: 'settings.menuAccount',
           name: 'Account',
           icon: 'mdi-shield-account-outline',
         },

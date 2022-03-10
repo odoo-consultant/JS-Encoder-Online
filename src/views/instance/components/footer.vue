@@ -2,7 +2,7 @@
   <div id="instanceFooter" class="d-flex no-select borbox text-xs">
     <div class="d-flex flex-ai tip flex-1">
       <i class="icon iconfont icon-zhuanhuan load-icon text-xs" v-show="isCompiling"></i>
-      <span class="tip-text" v-show="isCompiling">代码编译中，请等待...</span>
+      <span class="tip-text" v-show="isCompiling">{{ $t('instance.footer.compilingTips') }}</span>
     </div>
     <div class="d-flex flex-sh cursor-pos flex-ai">
       <span v-show="!cursorPos.selections">Ln {{cursorPos.ln}},</span>

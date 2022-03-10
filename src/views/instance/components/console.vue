@@ -102,10 +102,10 @@
         </div>
       </div>
       <div class="settings borbox flex-1 flex-clo" v-show="settingsVisible">
-        <v-checkbox label="自动清除历史日志" dense hide-details v-model="settings.clear"></v-checkbox>
-        <span class="text-describe text-xs">选中此选项将会在每次执行代码之前清除先前生成的历史日志，你可以选择保留历史日志，但可能会影响性能</span>
-        <v-checkbox label="代码高亮" dense hide-details v-model="settings.highlight"></v-checkbox>
-        <span class="text-describe text-xs">选中此选项，日志内容将被高亮渲染</span>
+        <v-checkbox :label="$t('instance.console.clear')" dense hide-details v-model="settings.clear"></v-checkbox>
+        <span class="text-describe text-xs">{{ $t('instance.console.clearTips') }}</span>
+        <v-checkbox :label="$t('instance.console.highlight')" dense hide-details v-model="settings.highlight"></v-checkbox>
+        <span class="text-describe text-xs">{{ $t('instance.console.highlightTips') }}</span>
       </div>
       <div class="textarea-box borbox d-flex flex-ai flex-sh">
         <i class="icon iconfont icon-lfmonth print-icon"></i>

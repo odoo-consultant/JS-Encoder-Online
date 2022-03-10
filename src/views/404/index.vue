@@ -2,9 +2,9 @@
   <div id="notFound" class="d-flex flex-jcc" v-once>
     <div class="not-found-content d-flex flex-clo flex-ai">
       <img class="not-found-img" :src="`${qiNiuImgLink}404.svg`" alt="">
-      <span class="title-xl">哦。。。页面哪儿去了？</span>
+      <span class="title-xl">{{ $t('http404.title') }}</span>
       <router-link to="/">
-        <v-btn color="primary" class="go-home-btn" dark>返回首页</v-btn>
+        <v-btn color="primary" class="go-home-btn" dark>{{ $t('common.goHomeButton') }}</v-btn>
       </router-link>
     </div>
   </div>

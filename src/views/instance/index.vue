@@ -3,7 +3,7 @@
     <div class="loader flex-jcc" v-if="!loaded">
       <div class="loader-content d-flex flex-clo flex-ai">
         <instance-loader class="page-loader"></instance-loader>
-        <span class="tip">{{$t(tip)}}</span>
+        <span class="tips">{{$t(tips)}}</span>
       </div>
     </div>
     <instance v-else></instance>
@@ -30,7 +30,7 @@ export default {
       loaded: false,
       clientWidth: window.innerWidth,
       clientHeight: document.documentElement.clientHeight,
-      tip: 'instance.loadingTips',
+      tips: 'instance.loadingTips',
     }
   },
   mounted() {
@@ -125,7 +125,7 @@ export default {
       })
     },
     async calcSize() {
-      this.tip = 'instance.loadingTips'
+      this.tips = 'instance.loadingTips'
       return new Promise((resolve) => {
         setTimeout(() => {
           const { clientHeight: clientH, clientWidth: clientW } = document.body
@@ -166,7 +166,7 @@ export default {
         return void 0
       }
       const { username, instanceID: exampleId } = route.params
-      this.tip = 'instance.requestingTips'
+      this.tips = 'instance.requestingTips'
       try {
         const res = await this.$http.getWork({ username, exampleId })
         if (res.state) {
@@ -268,7 +268,7 @@ export default {
         width: 250px;
         height: 200px;
       }
-      .tip {
+      .tips {
         font-size: 16px;
         color: $light-2;
       }

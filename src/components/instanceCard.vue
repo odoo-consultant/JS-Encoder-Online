@@ -63,7 +63,7 @@ export default {
     shareLink() {
       const { username, exampleId } = this.info
       copyToClip(`${env.client}/work/${username}/${exampleId}`)
-      this.$message.success('链接已复制到剪切板！')
+      this.$message.success(this.$t('clipboard.linkCopiedTips'))
     },
     viewInstance() {
       const { username, exampleId } = this.info
@@ -74,10 +74,10 @@ export default {
     },
     async like() {
       if (!this.loginState) {
-        this.$message.info('请登录后再进行相关操作！')
+        this.$message.info(this.$t('common.loginRequiredTips'))
         return void 0
       } else if (this.isSelfWork) {
-        this.$message.info('不能对自己的实例点喜欢哦')
+        this.$message.info(this.$t('common.likeSelfProhibited'))
         return void 0
       }
       const { myFavorites, exampleId } = this.info

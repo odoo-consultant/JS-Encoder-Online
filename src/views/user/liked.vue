@@ -12,12 +12,12 @@
     <div class="liked-tip flex-jcc" v-show="showNothingTip">
       <div class="tip-content d-flex flex-clo flex-ai" v-if="isSelfProfile">
         <span class="heart">💓</span>
-        <span class="title-lg">也许</span>
-        <span class="title-sm">你还没有找到你喜欢的？</span>
+        <span class="title-lg">{{ $t('like.noDataTips1') }}</span>
+        <span class="title-sm">{{ $t('like.noDataTips2') }}</span>
       </div>
       <div class="tip-content d-flex flex-clo flex-ai" v-else>
         <span class="title-lg">🍃</span>
-        <span class="title-sm text-describe">这里空空如也...</span>
+        <span class="title-sm text-describe">{{ $t('common.emptyGridTips') }}</span>
       </div>
     </div>
   </div>

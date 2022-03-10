@@ -10,11 +10,11 @@
     <div class="user-info flex-1 d-flex">
       <div class="d-flex flex-clo info-text">
         <span class="nickname text-md pointer" @click="viewUserProfile">{{nickname}}</span>
-        <span class="about text-xs">{{about||'ta还没想好怎么描述自己...'}}</span>
+        <span class="about text-xs">{{about|| $t('user.noProfileDescTips') }}</span>
       </div>
       <div class="btn-opt" v-if="!isSelf">
-        <v-btn color="#3C3C3C" width="90" v-if="myFollow" :loading="loading" @click="unFollow">取消关注</v-btn>
-        <v-btn color="primary" width="90" v-else :loading="loading" @click="follow">关注</v-btn>
+        <v-btn color="#3C3C3C" width="90" v-if="myFollow" :loading="loading" @click="unFollow">{{ $t('common.unfollowButton') }}</v-btn>
+        <v-btn color="primary" width="90" v-else :loading="loading" @click="follow">{{ $t('common.followButton') }}</v-btn>
       </div>
     </div>
   </v-card>
@@ -47,7 +47,7 @@ export default {
   methods: {
     async follow() {
       if (!this.loginState) {
-        this.$message.info('请登录后再进行相关操作！')
+        this.$message.info(this.$t('common.loginRequiredTips'))
         return void 0
       }
       this.loading = true
@@ -69,7 +69,7 @@ export default {
     },
     async unFollow() {
       if (!this.loginState) {
-        this.$message.info('请登录后再进行相关操作！')
+        this.$message.info(this.$t('common.loginRequiredTips'))
         return void 0
       }
       this.loading = true

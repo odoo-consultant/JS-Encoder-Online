@@ -7,7 +7,7 @@
     </div>
     <div class="instance-name flex-sh pointer d-flex flex-ai">
       <div class="d-flex flex-end">
-        <span class="text-small">{{isNewWork?'新建实例':curInstanceDetail.title}}</span>
+        <span class="text-small">{{isNewWork? $t('header.newWorkName') :curInstanceDetail.title}}</span>
         <span class="text-xs author" v-if="!isNewWork" @click="goToUserProfile">By {{curInstanceDetail.nickname}}</span>
       </div>
       <v-btn icon small v-if="!isNewWork&&isSelfInstance" @click="setVisibleDialogName('instanceConfig')">
@@ -29,16 +29,16 @@
       <div class="btn-opts">
         <v-btn class="radius-2" color="#2a53cd" small depressed v-if="isSelfInstance || isNewWork"
           :disabled="disableSave" :loading="saveInstanceLoading" @click="saveInstance">
-          <v-icon left dark>mdi-cloud-upload</v-icon>保存
+          <v-icon left dark>mdi-cloud-upload</v-icon>{{ $t('header.save') }}
         </v-btn>
         <div v-if="!hideLike">
           <v-btn class="radius-2" color="info" small depressed v-show="curInstanceDetail.liked" :loading="likeLoading"
             :disabled="!loginState" @click="like">
-            <v-icon left small color="red">mdi-heart</v-icon>取消喜爱
+            <v-icon left small color="red">mdi-heart</v-icon>{{ $t('header.unlike') }}
           </v-btn>
           <v-btn class="radius-2" color="info" small depressed v-show="!curInstanceDetail.liked" :loading="likeLoading"
             :disabled="!loginState" @click="like">
-            <v-icon left small color="gray">mdi-heart</v-icon>喜爱
+            <v-icon left small color="gray">mdi-heart</v-icon>{{ $t('header.like') }}
           </v-btn>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default {
         headTags,
       })
       const reqData = {
-        exampleName: isNewWork ? '新建实例' : instance.title,
+        exampleName: isNewWork ? $t('header.newWorkName') : instance.title,
         ispublic: instance.ispublic,
         label: instance.tags,
         content,
@@ -115,7 +115,7 @@ export default {
         // 保存实例，如果是第一次保存(新建)，则重定向到正式实例页面
         const res = await this.$http.saveWork(reqData)
         if (res.state) {
-          this.$message.success('实例保存成功！')
+          this.$message.success($t('header.savedTips'))
           this.setCurInstanceDetail({ saved: true })
           // 重定向到正式实例页面
           if (isNewWork) {
@@ -126,7 +126,7 @@ export default {
               })
           }
         } else {
-          this.$message.error('实例保存失败！')
+          this.$message.error($t('header.saveErrorMessage'))
         }
       } catch (err) {
         console.log(err)

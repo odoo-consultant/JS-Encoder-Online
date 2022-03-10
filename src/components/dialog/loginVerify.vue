@@ -2,17 +2,17 @@
   <v-dialog id="loginVerify" max-width="500" v-model="visible" persistent>
     <v-card>
       <v-card-title class="info">
-        <span class="title-md">第三方登陆确认</span>
+        <span class="title-md">{{ $t('signin.verify.title') }}</span>
       </v-card-title>
       <v-card-text>
         <div class="content">
-          <span class="title-xs">您是否已经注册了 JS Encoder 账户？</span>
+          <span class="title-xs">{{ $t('signin.verify.headerTips') }}</span>
         </div>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="info" @click="toLogin">有，去登录</v-btn>
-        <v-btn color="primary" @click="toSignUp">没有，去注册</v-btn>
+        <v-btn color="info" @click="toLogin">{{ $t('signin.verify.yesToSignin') }}</v-btn>
+        <v-btn color="primary" @click="toSignUp">{{ $t('signin.verify.noToSignup') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

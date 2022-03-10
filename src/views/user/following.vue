@@ -10,17 +10,17 @@
     </div>
     <div class="following-tip flex-jcc" v-show="showNothingTip">
       <div class="tip-content d-flex flex-clo flex-ai" v-if="isSelfProfile">
-        <span class="text-describe">{{ $t('followee.desc1') }}</span>
-        <span class="text-describe">不如探索一番，没准儿真会有你感兴趣的？</span>
+        <span class="text-describe">{{ $t('followee.noDataTips1') }}</span>
+        <span class="text-describe">{{ $t('followee.noDataTips2') }}</span>
         <router-link to="/explore">
           <v-btn color="primary">
-            <v-icon left>mdi-cloud-search-outline</v-icon>去探索
+            <v-icon left>mdi-cloud-search-outline</v-icon>{{ $t('followee.exploreNow') }}
           </v-btn>
         </router-link>
       </div>
       <div class="tip-content d-flex flex-clo flex-ai" v-else>
         <span class="title-lg">🍃</span>
-        <span class="title-sm text-describe">这里空空如也...</span>
+        <span class="title-sm text-describe">{{ $t('common.emptyGridTips') }}</span>
       </div>
     </div>
   </div>

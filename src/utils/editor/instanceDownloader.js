@@ -1,6 +1,7 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import { mimeTypeMap } from './judgeMode'
+import { composeOwlClosure } from '../owl'
 import { compileHTML, compileCSS, compileJS } from './compiler'
 
 export default class InstanceDownloader {
@@ -40,7 +41,7 @@ export default class InstanceDownloader {
     await compileCSS(CSS, prep[1]).then((res) => {
       CSSCode = res
     })
-    await compileJS(JavaScript, prep[2]).then((res) => {
+    await compileJS(JavaScript, prep[2], HTML, prep[0]).then((res) => {
       JSCode = res
     })
     for (let i = 0, k = cssLinks.length;i < k;i++) {
@@ -115,12 +116,12 @@ export default class InstanceDownloader {
     ${headTags}
     ${extCss}
     <link rel="stylesheet" href="./index.css">
-    <script src="./index.js"><\/script>
     <title></title>
     </head>
     <body>
     ${HTMLCode}
     ${extJS}
+    <script src="./index.js"><\/script>
     </body>
     </html>
     `
@@ -136,7 +137,7 @@ export default class InstanceDownloader {
     }
     zip.generateAsync({ type: 'blob' }).then((content) => {
       // 生成压缩包并下载
-      saveAs(content, 'JSEncoderCode.zip')
+      saveAs(content, 'OWLEncoderCode.zip')
     })
   }
 

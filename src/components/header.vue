@@ -24,7 +24,7 @@
       <v-btn class="nav-item rounded-0" depressed v-for="(item, index) in navList" :key="index"
         :plain="curRouteName !== item.name" tile @click="navJumpTo(item)">
         <v-badge color="primary" dot v-if="item.text==='navList.features' && hasNewFeatures">
-          {{ $(item.text) }}
+          {{ $t(item.text) }}
         </v-badge>
         <span v-else>{{ $t(item.text) }}</span>
       </v-btn>
@@ -55,10 +55,10 @@ export default {
           text: 'navList.features',
           name: 'Features',
         },
-        // {
-        //   text: 'navList.feedback',
-        //   name: 'Feedback',
-        // },
+        {
+          text: 'navList.feedback',
+          name: 'Feedback',
+        },
         // {
         //   text: 'navList.document',
         // },

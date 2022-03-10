@@ -36,7 +36,7 @@
             <v-list-item v-for="(item, index) in toolsList" :key="item.value"
             class="d-flex flex-ai pointer text-sm" style="font-family:Consolas, Monaco" @click.native="selectTool(item.value)"
             dense link>
-              <span class="flex-1">{{item.label}}</span>
+              <span class="flex-1">{{ $t(item.label) }}</span>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -69,10 +69,10 @@ export default {
         JSX: 'icon-jsx'
       }),
       toolsList: [{
-        label: '格式化代码',
+        label: 'instance.editor.formatCode',
         value: 'format'
       }, {
-        label: '上下移动',
+        label: 'instance.editor.switchView',
         value: 'updown'
       }]
     }

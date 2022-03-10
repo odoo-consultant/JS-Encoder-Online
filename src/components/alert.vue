@@ -23,7 +23,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '提示',
+      default() { return this.$t('common.prompt') },
     },
     width: {
       type: Number | String,
@@ -39,7 +39,7 @@ export default {
     },
     okText: {
       type: String,
-      default: '确定',
+      default() { return this.$t('common.confirmButton') },
     },
     okColor: {
       type: String,
@@ -47,7 +47,7 @@ export default {
     },
     cancelText: {
       type: String,
-      default: '取消',
+      default() { return this.$t('common.cancelButton') },
     },
     showClose: {
       type: Boolean,

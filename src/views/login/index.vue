@@ -2,21 +2,21 @@
   <div id="login" class="d-flex flex-jcc">
     <div class="login-content">
       <div class="login-title title-xl">
-        <span>登录 </span>
-        <span class="text-primary text-bold">JS Encoder</span>
+        <span>{{ $t('signin.title') }} </span>
+        <span class="text-primary text-bold">OWL Encoder</span>
       </div>
       <div class="login-form">
         <v-form autocomplete="off" ref="loginForm">
-          <v-text-field label="用户名或邮箱" outlined color="primary" v-model="form.username" :rules="rules.username"
+          <v-text-field :label="$t('signin.username')" outlined color="primary" v-model="form.username" :rules="rules.username"
             autocomplete="off"></v-text-field>
-          <v-text-field label="密码" autocomplete="new-password" outlined color="primary" v-model="form.password"
+          <v-text-field :label="$t('common.password')" autocomplete="new-password" outlined color="primary" v-model="form.password"
             :append-icon="showPwd ? 'mdi-eye' : 'mdi-eye-off'" :type="showPwd ? 'text' : 'password'"
             :rules="rules.password" @click:append="showPwd = !showPwd"></v-text-field>
-          <v-btn color="primary" block x-large :loading="loginLoading" @click="login">登录</v-btn>
+          <v-btn color="primary" block x-large :loading="loginLoading" @click="login">{{ $t('signin.loginButton') }}</v-btn>
         </v-form>
         <div class="forget-pwd text-right">
           <router-link to="/forgetPwd">
-            <span class="text-sm">忘记密码了？</span>
+            <span class="text-sm">{{ $t('signin.forgotPassword') }}</span>
           </router-link>
         </div>
         <v-divider class="divider"></v-divider>
@@ -27,7 +27,7 @@
                 <i class="icon iconfont icon-github title-lg"></i>
               </v-btn>
             </template>
-            <span>使用 GitHub 登录</span>
+            <span>{{ $t('signin.githubOAuth2') }}</span>
           </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
@@ -35,7 +35,7 @@
                 <i class="icon iconfont icon-gitee title-lg"></i>
               </v-btn>
             </template>
-            <span>使用 Gitee 登录</span>
+            <span>{{ $t('signin.giteeOAuth2') }}</span>
           </v-tooltip>
         </div>
       </div>
@@ -60,12 +60,20 @@ export default {
         username: '',
         password: '',
       },
-      rules: {
-        username: [(v) => !!v || '请填写用户名或邮箱！'],
-        password: [(v) => !!v || '请填写密码！'],
-      },
+      // rules: {
+      //   username: [(v) => !!v || this.$t('signin.usernameRequiredTips')],
+      //   password: [(v) => !!v || this.$t('signin.passwordRequiredTips')],
+      // },
       loginLoading: false,
     }
+  },
+  computed: {
+    rules() {
+      return {
+        username: [(v) => !!v || this.$t('signin.usernameRequiredTips')],
+        password: [(v) => !!v || this.$t('signin.passwordRequiredTips')],
+      }
+    },
   },
   methods: {
     ...mapMutations(['setLoginInfo', 'setLoginState']),
@@ -73,7 +81,7 @@ export default {
       return this.$refs.loginForm.validate()
     },
     login() {
-      if (!this.validate()) void 0
+      if (!this.validate()) return void 0
       this.loginLoading = true
       // 获取第三方登录token
       const tmpToken = sessionStorage.getItem('TMP_OAUTH_TOKEN')
@@ -100,20 +108,20 @@ export default {
             })
             switch (msg) {
               case 1: {
-                this.$message.error('绑定第三方账户失败，该账户已被绑定！')
+                this.$message.error(this.$t('signin.bindErrorMessage'))
                 break
               }
               case 2: {
                 // 临时的第三方登录TMP_REMEMBER_ME
                 sessionStorage.setItem('TMP_REMEMBER_ME', true)
-                this.$message.success('绑定成功！')
+                this.$message.success(this.$t('signin.bindSuccessTips'))
                 break
               }
             }
-            this.$message.success('登录成功！')
+            this.$message.success(this.$t('signin.loginSuccessTips'))
             this.$router.replace(`/user/${username}`)
           } else {
-            this.$message.error('登录失败，用户名/邮箱或密码错误！')
+            this.$message.error(this.$t('signin.loginErrorMessage'))
           }
           this.loginLoading = false
         })
@@ -157,7 +165,7 @@ export default {
         margin: 30px 0;
         position: relative;
         &::after {
-          content: '或';
+          content: 'ˇ';
           padding: 5px;
           color: $light-7;
           font-size: 12px;

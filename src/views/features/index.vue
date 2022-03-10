@@ -10,7 +10,7 @@
                   <div class="title-xs">
                     <span>JS Encoder</span>
                     <span class="text-primary">　{{item.tag_name}}　</span>
-                    <span>更新事项</span>
+                    <span>{{ $t('features.changeLogTitle') }}</span>
                   </div>
                   <div class="text-sm" style="color:#999999">
                     <span>By {{item.author.login}}</span>

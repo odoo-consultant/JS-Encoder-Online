@@ -7,7 +7,7 @@
             <i class="icon iconfont" :class="item.icon"></i>
           </div>
         </template>
-        <span>{{item.text}}</span>
+        <span>{{ $t(item.text)}}</span>
       </v-tooltip>
     </div>
   </div>
@@ -20,37 +20,37 @@ export default {
     return {
       menuList: Object.freeze([
         {
-          text: '模板',
+          text: 'instance.sidebar.templates',
           name: 'templates',
           icon: 'icon-template'
         },
         {
-          text: '预处理语言',
+          text: 'instance.sidebar.prep',
           name: 'prep',
           icon: 'icon-shalou',
         },
         {
-          text: '库',
+          text: 'instance.sidebar.library',
           name: 'library',
           icon: 'icon-ku',
         },
         {
-          text: '设置',
+          text: 'instance.sidebar.settings',
           name: 'settings',
           icon: 'icon-kongzhitai',
         },
         {
-          text: '上传代码',
+          text: 'instance.sidebar.upload',
           name: 'upload',
           icon: 'icon-yunduanshangchuan',
         },
         {
-          text: '下载代码',
+          text: 'instance.sidebar.download',
           name: 'download',
           icon: 'icon-xiazai1',
         },
         {
-          text: '快捷键',
+          text: 'instance.sidebar.shortcut',
           name: 'shortcut',
           icon: 'icon-kuaijiejian1',
         },

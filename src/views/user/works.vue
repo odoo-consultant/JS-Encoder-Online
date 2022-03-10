@@ -10,17 +10,17 @@
     </div>
     <div class="create-tip flex-jcc" v-show="showNothingTip">
       <div class="tip-content d-flex flex-clo flex-ai" v-if="isSelfProfile">
-        <span class="text-describe">你当前还没有实例保存在云端哦~</span>
-        <span class="text-describe">赶快为社区贡献优质实例吧！</span>
+        <span class="text-describe">{{ $t('work.noDataTips1') }}</span>
+        <span class="text-describe">{{ $t('work.noDataTips2') }}</span>
         <router-link to="/newWork">
           <v-btn color="primary">
-            <v-icon left>mdi-plus</v-icon>新建实例
+            <v-icon left>mdi-plus</v-icon>{{ $t('common.createNewButton') }}
           </v-btn>
         </router-link>
       </div>
       <div class="tip-content d-flex flex-clo flex-ai" v-else>
         <span class="title-lg">🍃</span>
-        <span class="title-sm text-describe">这里空空如也...</span>
+        <span class="title-sm text-describe">{{ $t('common.emptyGridTips') }}</span>
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
   <div id="forgetPwd" class="d-flex flex-jcc">
     <div class="forget-pwd-content">
       <div class="forget-pwd-title d-flex flex-clo">
-        <span class="title-xl">忘记密码了？别担心！</span>
+        <span class="title-xl">忘记密码了？</span>
         <span class="text-sm text-describe">一封重置密码的确认邮件将被发送到你的邮箱</span>
       </div>
       <div class="forget-pwd-form">

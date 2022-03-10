@@ -10,14 +10,14 @@
         <v-spacer></v-spacer>
         <div v-if="userInfo.myFollow!==null">
           <v-btn width="80" small color="#3C3C3C" depressed v-if="userInfo.myFollow" :loading="unFollowLoading"
-            @click="unFollow">取消关注</v-btn>
-          <v-btn small color="primary" depressed width="80" v-else :loading="followLoading" @click="follow">关注</v-btn>
+            @click="unFollow">{{ $t('common.unfollowButton') }}</v-btn>
+          <v-btn small color="primary" depressed width="80" v-else :loading="followLoading" @click="follow">{{ $t('common.followButton') }}</v-btn>
         </div>
       </div>
-      <span class="about text-describe text-sm">{{userInfo.description||'ta还没想好怎么描述自己...'}}</span>
+      <span class="about text-describe text-sm">{{userInfo.description|| $t('user.noProfileDescTips') }}</span>
       <div class="text-sm num">
-        <span class="instances">实例: {{userInfo.works|formatNumber}}</span>
-        <span class="follower">粉丝: {{userInfo.fan|formatNumber}}</span>
+        <span class="instances">{{ $t('common.work') }} {{userInfo.works|formatNumber}}</span>
+        <span class="follower">{{ $t('common.follower') }} {{userInfo.fan|formatNumber}}</span>
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default {
     },
     async follow() {
       if (!this.loginState) {
-        this.$message.info('请登录后再进行相关操作！')
+        this.$message.info(this.$t('common.loginRequiredTips'))
         return void 0
       }
       this.followLoading = true
@@ -71,7 +71,7 @@ export default {
     },
     async unFollow() {
       if (!this.loginState) {
-        this.$message.info('请登录后再进行相关操作！')
+        this.$message.info(this.$t('common.loginRequiredTips'))
         return void 0
       }
       this.unFollowLoading = true

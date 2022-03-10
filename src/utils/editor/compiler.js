@@ -4,6 +4,7 @@
 
 import { externalLinks } from '../cdn'
 import Loader from '../loader'
+import { composeOwlClosure } from '../owl'
 
 const publicPath = process.env.BASE_URL
 const loader = new Loader()
@@ -48,7 +49,16 @@ function compilePug (code) {
   }
   return pug.compile(code)({})
 }
-async function compileQWeb (code) {
+
+// // owl的HTML文件不编译，返回空
+// async function compileOWL (code) {
+//   console.log('compileOWL')
+//   return new Promise((resolve, reject) => {
+//     resolve('')
+//   })
+// }
+
+async function compileQWEB (code) {
   if (!loader.get('QWeb2')) {
     await loader.loadScript('http://127.0.0.1:8069/web/static/lib/qweb/qweb2.js').then(() => {
       loader.set('QWeb2', true)
@@ -133,9 +143,20 @@ async function compileJSX (code) {
   return window.Babel.transform(code, { presets: ['react'] }).code
 }
 async function compileHTML (code, prep) {
+  if (prep === 'OWL') {
+    return ''
+  }
   switch (prep) {
+    // case 'QWL':
+    //   await compileOWL(code).then(res => {
+    //     console.log('res====' + res)
+    //     code = res
+    //   }).catch(err => {
+    //     console.log(err)
+    //   })
+    //   break
     case 'QWEB':
-      await compileQWeb(code).then(res => {
+      await compileQWEB(code).then(res => {
         code = res
       }).catch(err => {
         console.log(err)
@@ -181,7 +202,7 @@ async function compileCSS (code, prep) {
   }
   return code
 }
-async function compileJS (code, prep) {
+async function compileJS (code, prep, html, prep0) {
   switch (prep) {
     case 'TypeScript':
       await compileTypeScript(code).then(res => {
@@ -205,6 +226,9 @@ async function compileJS (code, prep) {
       })
       break
   }
+  if (prep0 === 'OWL') {
+    code = composeOwlClosure(code, html)
+  }  
   return code
 }
 export {

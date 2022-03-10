@@ -10,7 +10,7 @@ Vue.use(vuexI18n.plugin, store)
 // import predefined localizations
 import tZhCN from './zh-CN.js'
 import tEn from './en.js'
-import tJp from './en.js'
+import tJp from './jp.js'
 
 // add translations
 Vue.i18n.add('zh-CN', tZhCN)
@@ -78,6 +78,8 @@ const lang = getLang()
 
 // default locale is english
 Vue.i18n.set(lang)
+
+Vue.i18n.fallback(langs[0])
 
 export {
     // lang, // 获取到当前语言

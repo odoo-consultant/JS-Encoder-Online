@@ -261,7 +261,7 @@ async function login () {
 router.beforeResolve((to, from, next) => {
   const loginState = store.state.loginState
   if (to.meta.requireAuth && !loginState) {
-    Vue.prototype.$message.info('登录以访问该页面！')
+    Vue.prototype.$message.info(Vue.i18n.translate('common.loginRequiredTips'))
     next('/login')
   } else {
     next()

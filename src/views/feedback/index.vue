@@ -12,14 +12,14 @@
     </div>
     <div class="feedback-box" v-else>
       <div class="title-xl">
-        <span>快来提出你宝贵的建议吧！</span>
+        <span>{{ $t('feedback.title') }}</span>
       </div>
       <div class="feedback-content d-flex flex-clo">
         <v-form ref="form">
-          <v-text-field autocomplete="off" label="标题" background-color="info" solo required v-model="form.title"
+          <v-text-field autocomplete="off" :label="$t('feedback.title2')" background-color="info" solo required v-model="form.title"
             :rules="rules.title">
           </v-text-field>
-          <v-textarea label="说说你的想法..." background-color="info" solo maxlength="200" counter="200" rows="8" no-resize
+          <v-textarea :label="$t('feedback.content')" background-color="info" solo maxlength="200" counter="200" rows="8" no-resize
             required v-model="form.content" :rules="rules.content"></v-textarea>
         </v-form>
       </div>
@@ -31,7 +31,7 @@
             </v-btn>
           </v-btn-toggle>
         </div>
-        <v-btn color="primary" :loading="loading" @click="submitSuggestion">提交建议</v-btn>
+        <v-btn color="primary" :loading="loading" @click="submitSuggestion">{{ $t('feedback.submitButton') }}</v-btn>
       </div>
     </div>
   </div>
@@ -51,10 +51,10 @@ export default {
       },
       rules: {
         title: [
-          (v) => !!v || '请填写标题！',
-          (v) => (v && v.length <= 25) || '标题长度不能超过25个字符！',
+          (v) => !!v || this.$t('feedback.titleRequiredTips'),
+          (v) => (v && v.length <= 25) || this.$t('feedback.titleMaxLengthTips'),
         ],
-        content: [(v) => !!v || '请填写建议内容！'],
+        content: [(v) => !!v || this.$t('feedback.contentRequiredTips')],
       },
       loading: false,
       feedbackList: [],
@@ -66,7 +66,7 @@ export default {
       this.showList = true
       this.$http.getFeedbacks().then(({ state, data }) => {
         if (state) {
-          this.$message.success('获取反馈成功！')
+          this.$message.success(this.$t('feedback.fetchFeedbackSuccessTips'))
           this.feedbackList = data
         }
       })
@@ -86,10 +86,10 @@ export default {
         const username = this.loginInfo.username
         const res = await this.$http.sendFeedback({ ...this.form, username })
         if (res.state) {
-          this.$message.success('反馈成功！')
+          this.$message.success(this.$t('feedback.feedbackSuccessTips'))
           this.reset()
         } else {
-          this.$message.error('反馈失败！')
+          this.$message.error(this.$t('feedback.feedbackErrorMessage'))
         }
       } catch (err) {
         console.log(err)

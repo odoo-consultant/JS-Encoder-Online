@@ -276,7 +276,7 @@ export default class Console {
         case 'RegExp':
         case 'Object':
           if (judgeCyclic(item)) {
-            result = 'JSEncoder Tip: "There is a circular reference in the output variable, please view the full log in the browser console."'
+            result = 'OWLEncoder Tip: "There is a circular reference in the output variable, please view the full log in the browser console."'
           } else {
             result = result + JSONStringify(item) + afterStr
           }
@@ -290,7 +290,7 @@ export default class Console {
           }
           break
         default:
-          result = 'JSEncoder Tip: "We do not support the display of this data type at this time, if you want to help us, please fork our project on Github."'
+          result = 'OWLEncoder Tip: "We do not support the display of this data type at this time, if you want to help us, please fork our project on Github."'
       }
     })
     return result

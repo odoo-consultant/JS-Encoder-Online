@@ -21,14 +21,14 @@
         </v-row>
         <v-row v-show="showFilter">
           <v-col lg="4" md="4" sm="6" cols="12">
-            <span>{{ $t('explore.preprocessLabel') }}</span>
+            <span>{{ $t('explore.preprocessLabel') }}:</span>
             <v-select hide-details clearable solo v-model="searchForm.prep" :items="prepList"
               :menu-props="{ offsetY: true }" @change="newSearch">
             </v-select>
           </v-col>
           <v-col lg="4" md="4" sm="6" cols="12">
-            <span>{{ $t('explore.sortLabel') }}</span>
-            <v-select solo :item-text="text" item-value="value" hide-details v-model="searchForm.sort"
+            <span>{{ $t('common.sortLabel') }}:</span>
+            <v-select solo item-text="text" item-value="value" hide-details v-model="searchForm.sort"
               :menu-props="{ offsetY: true }" :items="sortList" @change="newSearch">
             </v-select>
           </v-col>

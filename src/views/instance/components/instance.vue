@@ -272,19 +272,10 @@ export default {
         await compileCSS(code.CSS, prep[1]).then((res) => {
           CSSCode = res
         })
-        await compileJS(code.JavaScript, prep[2]).then((res) => {
+        await compileJS(code.JavaScript, prep[2], code.HTML, prep[0]).then((res) => {
           // 将JavaScript源代码通过AST在内部插入可以监听并阻止死循环的代码
           // JSCode = handleLoop(res)
-          if (prep[0] == 'OWL') {
-            const sanitizedXML = code.HTML.replace(/<!--[\s\S]*?-->/g, "").replace(/`/g, '\\\`')
-            JSCode = `
-              (async function(TEMPLATES) {
-                ${res}
-              })(\`${sanitizedXML}\`)`;
-              console.log(JSCode)
-          } else {
-            JSCode = res
-          }
+          JSCode = res
         })
         // 因为接下来可能需要动态修改外部链接，因此这里需要深拷贝一下
         links = deepCopy(this.instanceExtLinks)
@@ -296,11 +287,7 @@ export default {
         links.JSLinks = iframeLinks.mdJS
       }
       await compileHTML(code.HTML, prep[0]).then((res) => {
-        if (prep[0] == 'OWL') {
-          HTMLCode = ''
-        } else {
           HTMLCode = res
-        }
       })
       setTimeout(async () => {
         const handler = new IframeHandler(iframe)

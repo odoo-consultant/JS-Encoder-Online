@@ -13,18 +13,18 @@
           <v-list-item class="user-menu-list" link v-for="item in menuList" :key="item.value"
             @click="handleMenu(item.value)">
             <v-icon class="icon">{{item.icon}}</v-icon>
-            {{item.name}}
+            {{ $t(item.name) }}
           </v-list-item>
         </v-list>
       </v-menu>
     </div>
     <div class="not-login" v-else>
       <router-link to="/login">
-        <v-btn class="login-btn" depressed color="primary" :small="dense" :class="dense?'radius-2':''">{{ $t('headerAccount.signin')}}
+        <v-btn class="login-btn" depressed color="primary" :small="dense" :class="dense?'radius-2':''">{{ $t('common.signin')}}
         </v-btn>
       </router-link>
       <router-link to="/signup">
-        <v-btn class="sign-up-btn" depressed color="info" :small="dense" :class="dense?'radius-2':''">{{ $t('headerAccount.signup')}}
+        <v-btn class="sign-up-btn" depressed color="info" :small="dense" :class="dense?'radius-2':''">{{ $t('common.signup')}}
         </v-btn>
       </router-link>
     </div>
@@ -49,22 +49,22 @@ export default {
       qiNiuImgLink,
       menuList: Object.freeze([
         {
-          name: '我的',
+          name: 'common.mine',
           value: 'user',
           icon: 'mdi-account-outline',
         },
         {
-          name: '新建实例',
+          name: 'common.createNewButton',
           value: 'newWork',
           icon: 'mdi-plus-circle-outline',
         },
         {
-          name: '设置',
+          name: 'common.config',
           value: 'settings',
           icon: 'mdi-cog-outline',
         },
         {
-          name: '退出登录',
+          name: 'common.logout',
           value: 'logout',
           icon: 'mdi-logout-variant',
         },
@@ -115,7 +115,7 @@ export default {
         }
         case 'logout': {
           this.$alert({
-            content: '登出之后，下次来只能手动登录哦！',
+            content: this.$t('headerAccount.logoutTips'),
             okColor: 'error',
             okText: '登出',
           }).then((isLogout) => {

@@ -2,7 +2,7 @@
   <v-dialog id="prep" max-width="450" v-model="visible" @click:outside="setVisibleDialogName('')">
     <v-card>
       <v-card-title>
-        <span class="title-xs">预处理语言</span>
+        <span class="title-xs">{{ $t('instance.preprocess.title') }}</span>
       </v-card-title>
       <v-card-text>
         <div class="d-flex flex-clo prep">

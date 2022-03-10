@@ -26,7 +26,7 @@
         <v-list class="works-menu">
           <v-list-item class="works-menu-list" link v-for="item in menuList" :key="item.value"
             @click="handleMenu(item.value)">
-            <v-icon class="icon">{{item.icon}}</v-icon>{{item.name}}
+            <v-icon class="icon">{{item.icon}}</v-icon>{{ $t(item.name) }}
           </v-list-item>
         </v-list>
       </v-menu>
@@ -53,12 +53,12 @@ export default {
       defPosterKey,
       menuList: Object.freeze([
         {
-          name: '分享',
+          name: 'common.shareButton',
           value: 'share',
           icon: 'mdi-share-variant',
         },
         {
-          name: '删除',
+          name: 'common.deleteButton',
           value: 'delete',
           icon: 'mdi-trash-can',
         },
@@ -85,9 +85,9 @@ export default {
     },
     delete() {
       this.$alert({
-        title: '删除实例',
-        content: '实例将会在回收站内保存7天，7天后将永久删除，确认继续该操作么',
-        okText: '确认并删除',
+        title: this.$t('recycleBin.deleteWork'),
+        content: this.$t('recycleBin.deleteWorkTips'),
+        okText: this.$t('recycleBin.deleteConfirmButton'),
         okColor: 'error',
       }).then(async (res) => {
         if (res) {
@@ -106,14 +106,14 @@ export default {
     shareLink() {
       const { username, exampleId } = this.info
       copyToClip(`${env.client}/work/${username}/${exampleId}`)
-      this.$message.success('链接已复制到剪切板！')
+      this.$message.success(this.$t('clipboard.linkCopiedTips'))
     },
     async like() {
       if (!this.loginState) {
-        this.$message.info('请登录后再进行相关操作！')
+        this.$message.info(this.$t('common.loginRequiredTips'))
         return void 0
       } else if (this.isSelfProfile) {
-        this.$message.info('不能对自己的实例点喜欢哦')
+        this.$message.info(this.$t('common.likeSelfProhibited'))
         return void 0
       }
       const { myFavorites, exampleId } = this.info
