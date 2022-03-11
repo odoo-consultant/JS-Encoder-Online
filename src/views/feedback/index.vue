@@ -62,8 +62,8 @@ export default {
     }
   },
   created() {
-    if (this.loginInfo.username === 'root') {
-      this.showList = true
+    if (this.showList) {
+      // this.showList = true
       this.$http.getFeedbacks().then(({ state, data }) => {
         if (state) {
           this.$message.success(this.$t('feedback.fetchFeedbackSuccessTips'))

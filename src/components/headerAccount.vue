@@ -163,6 +163,7 @@ export default {
 #headerAccount {
   .is-login {
     .avatar {
+
       &:hover {
         border: 2px solid $primary-1;
       }

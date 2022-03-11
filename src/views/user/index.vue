@@ -379,7 +379,7 @@ export default {
   padding: 0 35px 150px 35px;
   .user-info-box {
     width: 100%;
-    min-height: 300px;
+    min-height: 240px;
     position: relative;
     backdrop-filter: blur(10px);
     display: flex;
@@ -405,7 +405,7 @@ export default {
       z-index: -1;
     }
     .avatar {
-      margin-top: 50px;
+      margin-top: 32px;
       position: relative;
       overflow: visible;
       .edit-btn {
@@ -442,7 +442,7 @@ export default {
   }
   .user-views {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 32px;
     .user-tabs {
       .tab-list {
         background-color: $deep-3;
