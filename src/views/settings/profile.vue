@@ -3,13 +3,13 @@
     <v-form autocomplete="off" ref="form">
       <div class="profile-item profile-avatar d-flex flex-clo">
         <span class="item-title title-xs">{{ $t('settings.profile.title') }}</span>
-        <span class="text-sm text-describe">{{ $t('settings.profile.headerTips') }}</span>
+        <!-- <span class="text-sm text-describe">{{ $t('settings.profile.headerTips') }}</span> -->
         <div class="item-content d-flex flex-ai">
           <v-avatar size="150" color="primary">
             <img v-if="form.avatar||imgUrl" :src="imgUrl" />
             <span class="white--text text-h3" v-else>{{form.nickname|preNickname}}</span>
           </v-avatar>
-          <v-btn class="upload-btn" color="info">
+          <v-btn class="upload-btn" color="info" v-show="false">
             <a class="upload-a" href="javascript:;" @change="chooseFile">
               <input class="upload-input pointer" ref="fileInput" type="file" accept="image/png,image/jpg,image/jpeg"
                 multiple="multiple" />{{ $t('settings.profile.uploadButton') }}
@@ -39,11 +39,11 @@
           v-model="form.about" :rules="rules.about">
         </v-textarea>
       </div>
-      <div class="profile-item profile-about d-flex flex-clo">
+<!--       <div class="profile-item profile-about d-flex flex-clo">
         <span class="item-title title-xs">{{ $t('common.email') }}</span>
         <v-text-field solo :label="$t('settings.profile.emailTips')" background-color="info" v-model="form.email" :rules="rules.email">
         </v-text-field>
-      </div>
+      </div> -->
       <v-btn color="primary" block x-large :loading="loading" @click="save">{{ $t('common.saveButton') }}</v-btn>
     </v-form>
   </div>
@@ -85,7 +85,7 @@ export default {
   },
   created() {
     const { avatar, nickname, about, contactEmail } = this.curUserDetail
-    this.imgUrl = avatar ? qiNiuImgLink + avatar : ''
+    this.imgUrl = avatar ? avatar : ''
     this.form = {
       avatar,
       nickname,
@@ -176,14 +176,15 @@ export default {
       this.loading = true
       try {
         const { avatar, nickname, about, email } = this.form
-        const imgKey = await this.uploadAvatar()
+        // const imgKey = await this.uploadAvatar()
+        const imgKey = false
         const userInfo = {
           username: this.loginInfo.username,
           description: about,
-          contactEmail: email,
+          // contactEmail: email,
           name: nickname,
-          userPicture: imgKey || avatar,
-          oldImg: imgKey ? avatar : '',
+          // userPicture: imgKey || avatar,
+          // oldImg: imgKey ? avatar : '',
         }
         const res = await this.$http.updateUserInfo(userInfo)
         if (res.state) {
@@ -192,14 +193,14 @@ export default {
           this.setCurUserDetail({
             nickname,
             about,
-            email,
-            avatar: imgKey,
+            // email,
+            // avatar: imgKey,
           })
-          if (imgKey) {
-            this.setLoginInfoItem({ key: 'avatar', val: imgKey })
-            this.form.avatar = imgKey
-            imgKey && (this.imgUrl = qiNiuImgLink + imgKey)
-          }
+          // if (imgKey) {
+          //   this.setLoginInfoItem({ key: 'avatar', val: imgKey })
+          //   this.form.avatar = imgKey
+          //   imgKey && (this.imgUrl = qiNiuImgLink + imgKey)
+          // }
         }
       } catch (err) {
         console.log(err)

@@ -3,15 +3,20 @@
 	<div class="localizer">
 		<span v-for="locale in $i18n.locales()" :key="'i81n-' + locale"
 			@click="changeLocale(locale)" :class="$i18n.locale() !== locale ? '' : 'current'">
-			{{locale}}
+			{{icons[locale]}}
 		</span>
 	</div>
 </template>
 
 <script>
-	import { setLang } from '@/i18n'
+	import { icons, setLang } from '@/i18n'
 	export default {
 		name: 'Localizer',
+	  data() {
+	    return {
+	      icons: icons
+	    }
+	  },		
 		methods: {
 			changeLocale(locale) {
 				this.$i18n.set(locale)

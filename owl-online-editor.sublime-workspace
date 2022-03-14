@@ -1,0 +1,512 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"fontSize"
+			],
+			[
+				"codeIn",
+				"codeIndentNumber"
+			],
+			[
+				"save",
+				"savedTips"
+			],
+			[
+				"f",
+				"featuresList"
+			],
+			[
+				"se",
+				"setLang"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"fi",
+				"finH"
+			],
+			[
+				"last",
+				"lastBottomTab"
+			],
+			[
+				"las",
+				"lastTopTab"
+			],
+			[
+				"s",
+				"slice"
+			],
+			[
+				"la",
+				"layoutPos"
+			],
+			[
+				"Odoo",
+				"OdooWeb"
+			],
+			[
+				"sa",
+				"saved_name"
+			],
+			[
+				"tw",
+				"tweet"
+			],
+			[
+				"sav",
+				"saved_name"
+			],
+			[
+				"me",
+				"media_list"
+			],
+			[
+				"json",
+				"json_data"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"vue",
+				"Convert Case: Upper Case"
+			],
+			[
+				"install pa",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/userCard.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/i18n/zh-CN.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/editor/compiler.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/cdn.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/dialog/instanceConfig.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/feedback/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/dialog/prep.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/store/state/instance.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/store/mutations/instance.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/user/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/instanceCard.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/settings/profile.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/publicData.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/headerAccount.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/i18n/jp.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/settings/account.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/user/cycle-bin.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/dialog/template.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/home/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/followCard.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/i18n/index.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/i18n/en.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/header.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/vue.config.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/header.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/service/env.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/node_modules/npx/node_modules/npm/node_modules/npm-registry-client/lib/request.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/store/index.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/tools.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/editor/judgeMode.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/instance.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/editor.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/dialog/download.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/editor/instanceDownloader.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/editor/editorOpts.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/explore/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/main.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/service/api.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/router/index.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/dialog/settings.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/sidebar.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/viewTabBar.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/markdownTools.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/loader.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/fullScreenBar.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/footer.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/editorTabBar.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/console.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/dialog/library.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/dialog/upload.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/instance/components/dialog/shortcut.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/editor/console.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/dialog/modifyBindEmail.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/dialog/loginVerify.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/skeleton/followSkeleton.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/skeleton/instanceSkeleton.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/alert.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/selfInstanceCard.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/snackbar.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/localizer.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/inputNumber.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/goToTop.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/footer.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/components/cropper.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/signup/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/login/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/settings/code.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/resetPwd/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/settings/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/forgetPwd/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/features/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/404/index.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/user/works.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/user/liked.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/user/following.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/views/user/followers.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/App.vue",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/service/request.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/cookie.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/localStorage.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/store/mutations/user.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/oauthConfig.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/type.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/store/state/user.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/plugins/message.js",
+		"/Users/glovebx/Dev/projects/python/twitter/edit_tweets.py",
+		"/Users/glovebx/Dev/projects/python/twitter/download_tweets.py",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/package.json",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/plugins/vuetify.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/node_modules/spdx-exceptions/README.md",
+		"/Users/glovebx/Dev/projects/python/instagram/download_post.py",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/babel.config.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/lang.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/assets/css/markdown.css",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/assets/themes/default.css",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/assets/css/codemirror.css",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/assets/css/code-font.css",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/url.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/loader.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/utils/paramsToBase64.js",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/config/SecurityConfig.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-api/src/main/java/com/lzq/api/pojo/Content.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/utils/ExampleUtils.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/controller/ExampleController.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/controller/ContentController.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/controller/IndexController.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-api/src/main/java/com/lzq/api/pojo/Example.java",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/plugins/alert.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/node_modules/@vue/cli-service/lib/util/prepareProxy.js",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/rabbitmq/QueueReceiver.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/intercepter/JWTIntercepter.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/config/UserDetailConfig.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/config/WebConfigurer.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/config/MacLoginUrlAuthenticationEntryPoint.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-service/src/main/resources/application-prod.yml",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/resources/application-prod.yml",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/java/com/lzq/web/utils/JWTUtils.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-service/src/main/java/com/lzq/dubboservice/handler/MyMetaObjectHandler.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-service/src/main/java/com/lzq/dubboservice/service/AccountServiceImpl.java",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/resources/application-dev.yml",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/src/main/resources/application.yml",
+		"/Users/glovebx/Downloads/JS-Encoder_Java-master/js-encoder-web/springboot-dubbo-web.iml",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/node_modules/webpack-chain/src/DevServer.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/node_modules/prettier/index.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/store/modules/cancelRequest.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/src/store/modules/alertMsg.js",
+		"/Users/glovebx/Dev/projects/front/nodejs/JS-Encoder-Online/node_modules/vue-codemirror/src/codemirror.vue"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 98.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"qiNiuImgLink",
+			"qiNiuImgLink\n",
+			"qiNiuImgLink",
+			"http://127.0.0.1:8069",
+			"externalLinks",
+			"owl.js",
+			"publicPath",
+			"http://127.0.0.1:8069/web/static",
+			"inputWorkTagTips",
+			"$t",
+			"min",
+			"50px",
+			"this.showList",
+			"feedback",
+			"JSE",
+			"compileOWL",
+			"compileHTML",
+			"compileJS",
+			"compileOWL",
+			"compileQWeb",
+			"composeOwlClosure",
+			"import { composeOwlClosure } from '@utils/owl'",
+			"judgeMode",
+			"composeOwlClosure",
+			"compileHTML",
+			"compileQWeb",
+			"：",
+			"currentEmailLabel",
+			"：",
+			"sortLabel",
+			"：",
+			"prev",
+			"assets",
+			"assetsDir",
+			"！",
+			"$t",
+			"handleMenu",
+			"menuList",
+			"关注",
+			"tabList",
+			"handleTabs",
+			"tabList",
+			"handleTabs",
+			"common.followee",
+			"void 0",
+			"icon-gitee",
+			"emailText",
+			"text",
+			"$",
+			"emailText",
+			"发送",
+			"$t",
+			"config",
+			"tip ",
+			"tip",
+			"tip ",
+			"！",
+			"$t",
+			"sortList",
+			"实例页面加",
+			"searchForm",
+			"searchForm.sort",
+			"getRelease",
+			"v-for=",
+			"_back",
+			"setFollow",
+			"copyToClip",
+			"curRouteName",
+			"getNavList",
+			";",
+			"following",
+			"myFollow",
+			"getUserInfo",
+			"getWork",
+			"logout",
+			"REMEMBER_ME",
+			"AUTH_TOKEN",
+			"login",
+			"/login",
+			"TMP_OAUTH_TOKEN",
+			"devServer",
+			"server",
+			"baseUrl",
+			"codeContent",
+			"bindState",
+			"login(",
+			"loginWithGitee",
+			"editorResize",
+			"fontStyle",
+			"style",
+			"editor",
+			"consoleH",
+			"resize",
+			"editorResize",
+			"editorW",
+			"editorResize",
+			"resizeVisible",
+			"cursor: w-resize;",
+			"viewResize",
+			"setConsoleInfo",
+			"selectTool",
+			"codeContent",
+			"curTab",
+			"down",
+			"setCurTab",
+			"layoutTemplate",
+			"layoutPos",
+			"codeContent",
+			"format()",
+			"selectTool",
+			"curTab",
+			"setCurTab",
+			"!",
+			"100",
+			"100vh",
+			"setCurTab",
+			"selectTool",
+			"setCurTab",
+			"selectTool",
+			"setCurTab",
+			"selectTool",
+			"setInstanceCode",
+			"setShouldResetCode",
+			"mapMutations",
+			"sockjs-node",
+			"handleInstanceCode",
+			"setInstanceCode",
+			"codeOptions"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"https://moco.co",
+			"process.env.BASE_URL",
+			"${publicPath}js/odoo",
+			"",
+			"',",
+			"'http://127.0.0.1:8069",
+			"",
+			"\"id\"",
+			"\"text_zh\"",
+			"\"id\""
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "owl-online-editor.sublime-project",
+	"replace":
+	{
+		"height": 68.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 171.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

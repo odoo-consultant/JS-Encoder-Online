@@ -12,13 +12,16 @@
       </div>
       <div class="sign-up-form">
         <v-form autocomplete="off" ref="signUpForm">
-          <v-text-field :label="$t('common.username')" outlined color="primary" :hint="$t('signup.usernameHint')" v-model="form.username"
+          <v-text-field class="email-field" :label="$t('common.email')" outlined color="primary"
+            v-model="form.email" :rules="rules.email" :error-messages="errors.email">          
+          </v-text-field>
+<!--           <v-text-field :label="$t('common.username')" outlined color="primary" :hint="$t('signup.usernameHint')" v-model="form.username"
             :rules="rules.username" :error-messages="errors.username">
           </v-text-field>
-          <v-text-field :label="$t('common.nickname')" outlined color="primary" :hint="$t('signup.nicknameHint')" v-model="form.nickname"
+ -->          <v-text-field :label="$t('common.nickname')" outlined color="primary" :hint="$t('signup.nicknameHint')" v-model="form.nickname"
             :rules="rules.nickname">
           </v-text-field>
-          <v-row>
+<!--           <v-row>
             <v-col style="padding-bottom: 0" sm="8" cols="12">
               <v-text-field class="email-field" ref="emailField" :label="$t('common.email')" outlined color="primary"
                 v-model="form.email" :rules="rules.email" :error-messages="errors.email">
@@ -34,7 +37,7 @@
                 :rules="rules.authCode" :error-messages="errors.authCode">
               </v-text-field>
             </v-col>
-          </v-row>
+          </v-row> -->
           <v-text-field :label="$t('common.password')" outlined color="primary" :hint="$t('signup.passwordHint')" autocomplete="new-password"
             v-model="form.password" :append-icon="showPwd ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPwd ? 'text' : 'password'" @click:append="showPwd = !showPwd" :rules="rules.password">
@@ -58,16 +61,16 @@ export default {
     return {
       showPwd: false,
       showRePwd: false,
-      // emailOpts: {
-      //   emailText: this.$t('signup.sendVerifyCodeButton'),
-      //   emailDelay: 59,
-      //   emailSendTimer: null,
-      //   sended: false,
-      //   authCodeLoading: false,
-      // },
+      emailOpts: {
+        // emailText: this.$t('signup.sendVerifyCodeButton'),
+        emailDelay: 59,
+        emailSendTimer: null,
+        sended: false,
+        authCodeLoading: false,
+      },
       errors: {
-        username: [],
-        authCode: [],
+        // username: [],
+        // authCode: [],
         email: [],
       },
       // rules: {
@@ -97,10 +100,10 @@ export default {
       //   ],
       // },
       form: {
-        username: '',
+        // username: '',
         nickname: '',
         email: '',
-        authCode: '',
+        // authCode: '',
         password: '',
         rePassword: '',
       },
@@ -116,11 +119,11 @@ export default {
     },
     rules() { 
       return {
-        username: [
-          (v) => !!v || this.$t('signup.usernameRequiredTips'),
-          (v) => (v && v.length <= 15) || this.$t('signup.usernameMaxLengthTips'),
-          (v) => (v && regexpList.letterOrNum.test(v)) || this.$t('signup.usernameFormatTips'),
-        ],
+        // username: [
+        //   (v) => !!v || this.$t('signup.usernameRequiredTips'),
+        //   (v) => (v && v.length <= 15) || this.$t('signup.usernameMaxLengthTips'),
+        //   (v) => (v && regexpList.letterOrNum.test(v)) || this.$t('signup.usernameFormatTips'),
+        // ],
         nickname: [
           (v) => !!v || this.$t('signup.nicknameRequiredTips'),
           (v) => (v && v.length <= 25) || this.$t('signup.nicknameMaxLengthTips'),
@@ -129,7 +132,7 @@ export default {
           (v) => !!v || this.$t('signup.emailRequiredTips'),
           (v) => (v && this.isEmailRight) || this.$t('signup.emailFormatTips'),
         ],
-        authCode: [(v) => !!v || this.$t('signup.verifyCodeRequiredTips')],
+        // authCode: [(v) => !!v || this.$t('signup.verifyCodeRequiredTips')],
         password: [
           (v) => !!v || this.$t('signup.passwordRequiredTips'),
           (v) =>
@@ -142,66 +145,63 @@ export default {
         ],
       }
     }, 
-    emailOpts() {
-      return {
-        emailText: this.$t('signup.sendVerifyCodeButton'),
-        emailDelay: 59,
-        emailSendTimer: null,
-        sended: false,
-        authCodeLoading: false,
-      }
-    },
+    // emailOpts() {
+    //   return {
+    //     emailText: this.$t('signup.sendVerifyCodeButton'),
+    //     emailDelay: 59,
+    //     emailSendTimer: null,
+    //     sended: false,
+    //     authCodeLoading: false,
+    //   }
+    // },
 
-    // emailText() {
-    //   return this.$t('signup.sendVerifyCodeButton')
-    // }
   },
   watch: {
     'form.username'() {
       this.errors.username = []
     },
-    'form.authCode'() {
-      this.errors.authCode = []
-    },
+    // 'form.authCode'() {
+    //   this.errors.authCode = []
+    // },
     'form.email'() {
       this.errors.email = []
     },
   },
   methods: {
-    async sendAuthCode() {
-      this.$refs.emailField.blur()
-      // 向邮箱发送验证码 emailAuthCode
-      const emailOpts = this.emailOpts
-      emailOpts.authCodeLoading = true
-      try {
-        const res = await this.$http.emailAuthCode({ email: this.form.email })
-        if (res.state) {
-          this.$message.success(this.$t('signup.verifyCodeSentTips'))
-          emailOpts.sended = true
-          function calcEmailTime() {
-            let delay = emailOpts.emailDelay
-            let sentPrefix = this.$t('signup.sentPrefixTips')
-            emailOpts.emailText = `${sentPrefix}（${delay}s）`
-            if (--delay < 0) {
-              clearInterval(emailOpts.emailSendTimer)
-              Object.assign(emailOpts, {
-                emailDelay: 60,
-                emailSendTimer: null,
-                emailText: this.$t('signup.sendVerifyCodeButton'),
-                sended: false,
-              })
-            } else {
-              emailOpts.emailDelay = delay
-            }
-          }
-          calcEmailTime()
-          emailOpts.emailSendTimer = setInterval(calcEmailTime, 1000)
-        }
-      } catch (err) {
-        console.log(err)
-      }
-      emailOpts.authCodeLoading = false
-    },
+    // async sendAuthCode() {
+    //   this.$refs.emailField.blur()
+    //   // 向邮箱发送验证码 emailAuthCode
+    //   const emailOpts = this.emailOpts
+    //   emailOpts.authCodeLoading = true
+    //   try {
+    //     const res = await this.$http.emailAuthCode({ email: this.form.email })
+    //     if (res.state) {
+    //       this.$message.success(this.$t('signup.verifyCodeSentTips'))
+    //       emailOpts.sended = true
+    //       function calcEmailTime() {
+    //         let delay = emailOpts.emailDelay
+    //         let sentPrefix = this.$t('signup.sentPrefixTips')
+    //         emailOpts.emailText = `${sentPrefix}（${delay}s）`
+    //         if (--delay < 0) {
+    //           clearInterval(emailOpts.emailSendTimer)
+    //           Object.assign(emailOpts, {
+    //             emailDelay: 60,
+    //             emailSendTimer: null,
+    //             emailText: this.$t('signup.sendVerifyCodeButton'),
+    //             sended: false,
+    //           })
+    //         } else {
+    //           emailOpts.emailDelay = delay
+    //         }
+    //       }
+    //       calcEmailTime()
+    //       emailOpts.emailSendTimer = setInterval(calcEmailTime, 1000)
+    //     }
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    //   emailOpts.authCodeLoading = false
+    // },
     validate() {
       return this.$refs.signUpForm.validate()
     },
@@ -209,19 +209,19 @@ export default {
       if (this.validate()) {
         this.signUpLoading = true
         const {
-          username,
+          // username,
           nickname: name,
           email,
           password,
-          authCode: code,
+          // authCode: code,
         } = this.form
         try {
           const res = await this.$http.signUp({
-            username,
+            // username,
             name,
             email,
             password,
-            code,
+            // code,
           })
           const { state, msg } = res
           if (state) {

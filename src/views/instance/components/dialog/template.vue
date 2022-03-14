@@ -43,7 +43,7 @@ export default {
           preprocessor: ['OWL', 'CSS', 'JavaScript'],
           links: {
             cssLinks: [],
-            JSLinks: ['https://odoo.github.io/owl/owl.js']
+            JSLinks: ['https://moco.co/sgp_owl/static/lib/owl/owl.js']
           },
           code: {
             HTML: '<templates><div></div></templates>',
@@ -54,23 +54,22 @@ export default {
         QWEB: {
           preprocessor: ['QWEB', 'CSS', 'JavaScript'],
           links: {
-            cssLinks: ['http://127.0.0.1:8069/web/static/lib/fontawesome/css/font-awesome.css',
-                        'http://127.0.0.1:8069/web/static/lib/bootstrap/css/bootstrap.css'],
-            JSLinks: ['http://127.0.0.1:8069/web/static/lib/jquery/jquery.js',
-                      'http://127.0.0.1:8069/web/static/lib/popper/popper.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/index.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/util.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/alert.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/button.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/carousel.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/collapse.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/dropdown.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/modal.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/tooltip.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/popover.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/scrollspy.js',
-                      'http://127.0.0.1:8069/web/static/lib/bootstrap/js/tab.js',
-                      'http://127.0.0.1:8069/web/static/src/public/database_manager.js']
+            cssLinks: ['https://moco.co/web/static/lib/fontawesome/css/font-awesome.css',
+                        'https://moco.co/web/static/lib/bootstrap/css/bootstrap.css'],
+            JSLinks: ['https://moco.co/web/static/lib/jquery/jquery.js',
+                      'https://moco.co/web/static/lib/popper/popper.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/index.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/util.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/alert.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/button.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/carousel.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/collapse.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/dropdown.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/modal.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/tooltip.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/popover.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/scrollspy.js',
+                      'https://moco.co/web/static/lib/bootstrap/js/tab.js']
           },
           code: {
             HTML: '<h1>This is a template of QWEB!</h1>',
@@ -90,45 +89,45 @@ export default {
         //     JavaScript: ''
         //   }
         // },
-        // Vue2: {
-        //   preprocessor: ['HTML', 'CSS', 'JavaScript'],
-        //   links: {
-        //     cssLinks: [],
-        //     JSLinks: ['https://cdn.staticfile.org/vue/2.6.14/vue.min.js']
-        //   },
-        //   code: {
-        //     HTML: '<div id=\"app\">\n\t{{ message }}\n</div>',
-        //     CSS: '',
-        //     JavaScript: `var app = new Vue({\n\tel: '#app',\n\tdata: {\n\t\tmessage: 'This is a template of Vue2!'\n\t}\n})`
-        //   }
-        // },
-        // Vue3: {
-        //   preprocessor: ['HTML', 'CSS', 'JavaScript'],
-        //   links: {
-        //     cssLinks: [],
-        //     JSLinks: ['https://cdn.staticfile.org/vue/3.2.31/vue.global.min.js']
-        //   },
-        //   code: {
-        //     HTML: '<div id=\"app\">\n\t{{message}}\n</div>',
-        //     CSS: '',
-        //     JavaScript: `const app = {\n\tdata() {\n\t\treturn {\n\t\t\tmessage: 'This is a template of Vue3!'\n\t\t}\n\t}\n}\n\nVue.createApp(app).mount('#app')`
-        //   }
-        // },
-        // React: {
-        //   preprocessor: ['HTML', 'CSS', 'JSX'],
-        //   links: {
-        //     cssLinks: [],
-        //     JSLinks: [
-        //       'https://cdn.staticfile.org/react/17.0.0/umd/react.development.min.js',
-        //       'https://cdn.staticfile.org/react-dom/17.0.0/umd/react-dom.development.min.js'
-        //     ]
-        //   },
-        //   code: {
-        //     HTML: '<div id=\"root\">\n\t{{message}}\n</div>',
-        //     CSS: '',
-        //     JavaScript: `ReactDOM.render(\n\t<h1>This is a template of React!</h1>,\n\tdocument.getElementById('root')\n);`
-        //   }
-        // },
+        Vue2: {
+          preprocessor: ['HTML', 'CSS', 'JavaScript'],
+          links: {
+            cssLinks: [],
+            JSLinks: ['https://cdn.staticfile.org/vue/2.6.14/vue.min.js']
+          },
+          code: {
+            HTML: '<div id=\"app\">\n\t{{ message }}\n</div>',
+            CSS: '',
+            JavaScript: `var app = new Vue({\n\tel: '#app',\n\tdata: {\n\t\tmessage: 'This is a template of Vue2!'\n\t}\n})`
+          }
+        },
+        Vue3: {
+          preprocessor: ['HTML', 'CSS', 'JavaScript'],
+          links: {
+            cssLinks: [],
+            JSLinks: ['https://cdn.staticfile.org/vue/3.2.31/vue.global.min.js']
+          },
+          code: {
+            HTML: '<div id=\"app\">\n\t{{message}}\n</div>',
+            CSS: '',
+            JavaScript: `const app = {\n\tdata() {\n\t\treturn {\n\t\t\tmessage: 'This is a template of Vue3!'\n\t\t}\n\t}\n}\n\nVue.createApp(app).mount('#app')`
+          }
+        },
+        React: {
+          preprocessor: ['HTML', 'CSS', 'JSX'],
+          links: {
+            cssLinks: [],
+            JSLinks: [
+              'https://cdn.staticfile.org/react/17.0.0/umd/react.development.min.js',
+              'https://cdn.staticfile.org/react-dom/17.0.0/umd/react-dom.development.min.js'
+            ]
+          },
+          code: {
+            HTML: '<div id=\"root\">\n\t{{message}}\n</div>',
+            CSS: '',
+            JavaScript: `ReactDOM.render(\n\t<h1>This is a template of React!</h1>,\n\tdocument.getElementById('root')\n);`
+          }
+        },
         // Angular: {
         //   preprocessor: ['HTML', 'CSS', 'JavaScript'],
         //   links: {
@@ -146,9 +145,9 @@ export default {
         { label: 'OWL', svgName: '/images/owl.svg' },
         { label: 'QWEB', svgName: '/images/qweb.svg' },
         // { label: 'Vanilla', svgName: 'Vanilla' },
-        // { label: 'Vue2', svgName: 'Vue' },
-        // { label: 'Vue3', svgName: 'Vue' },
-        // { label: 'React', svgName: 'React' },
+        { label: 'Vue2', svgName: 'Vue' },
+        { label: 'Vue3', svgName: 'Vue' },
+        { label: 'React', svgName: 'React' },
         // { label: 'Angular', svgName: 'Angular' },
       ]
     }

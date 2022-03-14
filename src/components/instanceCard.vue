@@ -1,6 +1,6 @@
 <template>
   <v-card class="instance-card">
-    <v-img class="instance-card-img" :src="`${qiNiuImgLink}${info.img||defPosterKey}`">
+    <v-img class="instance-card-img" :src="`${info.img||defPosterKey}`">
       <div class="img-screen pointer d-flex flex-ai flex-jcc" @click="viewInstance">
         <v-icon>mdi-eye</v-icon>
       </div>
@@ -11,7 +11,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-avatar size="40" class="pointer" v-bind="attrs" v-on="on" :color="info.userPicture?'':'primary'"
             @click.native="viewUserProfile">
-            <v-img v-if="info.userPicture" :src="qiNiuImgLink+info.userPicture" :alt="info.name"></v-img>
+            <v-img v-if="info.userPicture" :src="info.userPicture" :alt="info.name"></v-img>
             <span class="white--text text-h7" v-else>{{info.name|preNickname}}</span>
           </v-avatar>
         </template>

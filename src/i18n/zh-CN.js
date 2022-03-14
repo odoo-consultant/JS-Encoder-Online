@@ -62,7 +62,7 @@ export default {
 		slogan1: '简洁易用，功能丰富的 OWL 编辑器',
 		slogan2: '一个分享代码，共同学习的平台',
 		createNow: '创建新实例',
-		viewDocument: '查看文档',
+		viewDocument: '查看Odoo客户端',
 		whatisOOE: '能做什么？',
 
 		features: {
@@ -128,7 +128,7 @@ export default {
 		filterButton: '过滤',
 		preprocessLabel: '预处理',
 		sortByCreateDate: '创建时间',
-		sortByWriteDate: '更新日期',
+		sortByUpdateDate: '更新日期',
 		sortByPopularity: '喜爱度',
 		noDataTips1: '哎呀，什么都没找到诶~~',
 		noDataTips2: '但我想，也许你可以为这里开拓一片新天地？',

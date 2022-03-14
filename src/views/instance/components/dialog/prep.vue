@@ -38,7 +38,7 @@ export default {
     this.prepList = [...this.prep]
   },
   computed: {
-    ...mapState(['visibleDialogName', 'prep', 'curTab']),
+    ...mapState(['visibleDialogName', 'prep', 'curTab', 'topPrep', 'bottomPrep']),
   },
   watch: {
     visibleDialogName(name) {
@@ -51,8 +51,40 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setVisibleDialogName', 'setPrep', 'setCurTab']),
+    ...mapMutations(['setVisibleDialogName', 'setPrep', 'setCurTab', 'setTopPrep', 'setBottomPrep']),
     prepChange(index) {
+      // reset topPrep & bottomPrep
+      if (this.topPrep.length > 0 && this.bottomPrep.length > 0) {
+        // let newPrep2 = []
+        // let dirty = false
+
+        // this.topPrep.forEach(item => {
+        //   if (item == this.curTab) {
+        //     newPrep2.push(newPrep)
+        //     dirty = true
+        //   } else {
+        //     newPrep2.push(item)
+        //   }
+        // })
+
+        // if (dirty) {
+        //   this.setTopPrep(newPrep2)
+        // } else {
+        //   newPrep2 = []
+        //   this.bottomPrep.forEach(item => {
+        //     if (item == this.curTab) {
+        //       newPrep2.push(newPrep)
+        //       dirty = true
+        //     } else {
+        //       newPrep2.push(item)
+        //     }
+        //   })
+        //   this.setBottomPrep(newPrep2)
+        // }
+        this.setTopPrep([])
+        this.setBottomPrep([])
+      }
+      
       const newPrep = this.prepList[index]
       this.setPrep({ index, newPrep })
       if (judgeMode(newPrep) === judgeMode(this.curTab)) {

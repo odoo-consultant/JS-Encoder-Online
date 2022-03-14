@@ -95,7 +95,7 @@ export default {
       this.$router.push({ name: 'NewWork' })
     },
     goToOffline() {
-      window.open('http://jsencoder.lliiooiill.cn/')
+      window.open('https://play.google.com/store/apps/details?id=co.moco.odooclient')
     },
   },
   components: {

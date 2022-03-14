@@ -2,7 +2,7 @@
   <v-card class="user-card d-flex no-select">
     <div class="avatar">
       <v-avatar class="pointer" color="primary" size="50" @click="viewUserProfile">
-        <img v-if="avatar" :src="qiNiuImgLink+avatar" :alt="nickname">
+        <img v-if="avatar" :src="avatar" :alt="nickname">
         <span class="white--text text-h6" v-else>{{nickname|preNickname}}</span>
       </v-avatar>
       <v-spacer></v-spacer>

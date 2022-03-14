@@ -60,14 +60,14 @@ function compilePug (code) {
 
 async function compileQWEB (code) {
   if (!loader.get('QWeb2')) {
-    await loader.loadScript('http://127.0.0.1:8069/web/static/lib/qweb/qweb2.js').then(() => {
+    await loader.loadScript(externalLinks.qweb2).then(() => {
       loader.set('QWeb2', true)
     })
   } 
   let engine = new QWeb2.Engine()
   engine.debug = true
-  engine.add_template('<templates><t t-name="code">'+code+'</t></templates>')
-  return engine.render('code', {})
+  engine.add_template('<templates><t t-name="compileQWEB_code">'+code+'</t></templates>')
+  return engine.render('compileQWEB_code', {})
 }
 async function compileSass (code) {
   // scss&sass

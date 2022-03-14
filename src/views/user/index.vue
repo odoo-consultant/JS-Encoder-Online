@@ -1,9 +1,9 @@
 <template>
   <div id="user" class="d-flex flex-clo flex-ai">
     <div class="user-info-box flex-clo flex-ai" v-show="!userInfoLoading"
-      :style="{'--user-bgc':`url(${qiNiuImgLink+curUserDetail.avatar})`}">
+      :style="{'--user-bgc':`url(${curUserDetail.avatar})`}">
       <v-avatar size="100" class="avatar" :color="curUserDetail.avatar?'':'primary'">
-        <v-img v-if="curUserDetail.avatar" :src="qiNiuImgLink+curUserDetail.avatar"></v-img>
+        <v-img v-if="curUserDetail.avatar" :src="curUserDetail.avatar"></v-img>
         <span class="white--text text-h4" v-else>{{curUserDetail.nickname|preNickname}}</span>
         <router-link to="/settings" v-if="isSelfProfile">
           <v-btn class="edit-btn" title="$t('common.config')" fab x-small>
@@ -21,7 +21,7 @@
       </v-avatar>
       <div class="info-text d-flex flex-1 flex-clo flex-ai">
         <span class="nickname text-bold title-md">{{curUserDetail.nickname}}</span>
-        <span class="username text-md">@{{curUserDetail.username}}</span>
+        <span class="username text-md">{{curUserDetail.username}}</span>
         <p class="about text-describe text-sm">{{about}}</p>
       </div>
       <div class="other-info d-flex flex-jcb flex-w text-md">

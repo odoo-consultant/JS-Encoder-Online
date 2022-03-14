@@ -9,7 +9,7 @@
         <div class="copyright-info d-flex flex-clo text-sm">
           <span class="copyright">Copyright © 2022 OWL-Encoder odoo-consultant</span>
           <!-- <span>浙ICP备14016375号-2</span> -->
-          <a target="_blank" href="https://beian.miit.gov.cn/">浙ICP备14016375号-2</a>
+          <!-- <a target="_blank" href="https://beian.miit.gov.cn/">浙ICP备14016375号-2</a> -->
         </div>
       </div>
       <div class="footer-menu d-flex">

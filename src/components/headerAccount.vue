@@ -4,7 +4,7 @@
       <v-menu transition="slide-y-transition" bottom offset-y right>
         <template v-slot:activator="{ on, attrs }">
           <v-avatar class="avatar" v-bind="attrs" v-on="on" :size="dense?30:40" :color="loginInfo.avatar?'':'primary'">
-            <v-img v-if="loginInfo.avatar" :src="qiNiuImgLink+loginInfo.avatar"></v-img>
+            <v-img v-if="loginInfo.avatar" :src="loginInfo.avatar"></v-img>
             <span class="white--text text-h7" :class="{'text-xs':dense}"
               v-else>{{loginInfo.nickname|preNickname}}</span>
           </v-avatar>

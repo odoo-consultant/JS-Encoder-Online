@@ -12,7 +12,7 @@
           </v-text-field>
           <span class="form-item-title">{{ $t('instance.config.workTag') }}</span>
           <span class="text-describe">{{ $t('instance.config.workTagTips') }}</span>
-          <v-combobox class="form-item-input" background-color="info" clearable multiple chips solo label="$t('instance.config.inputWorkTagTips')"
+          <v-combobox class="form-item-input" background-color="info" clearable multiple chips solo :label="$t('instance.config.inputWorkTagTips')"
             hide-selected v-model="form.tags" :items="tagList" :disable-lookup="form.tags.length>=3" :rules="rules.tags"
             @change="tagsChange">
             <template v-slot:selection="{ attrs, item, select, selected }">

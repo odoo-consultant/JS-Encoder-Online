@@ -100,7 +100,7 @@ export default {
         headTags,
       })
       const reqData = {
-        exampleName: isNewWork ? $t('header.newWorkName') : instance.title,
+        exampleName: isNewWork ? this.$t('header.newWorkName') : instance.title,
         ispublic: instance.ispublic,
         label: instance.tags,
         content,
@@ -115,7 +115,7 @@ export default {
         // 保存实例，如果是第一次保存(新建)，则重定向到正式实例页面
         const res = await this.$http.saveWork(reqData)
         if (res.state) {
-          this.$message.success($t('header.savedTips'))
+          this.$message.success(this.$t('header.savedTips'))
           this.setCurInstanceDetail({ saved: true })
           // 重定向到正式实例页面
           if (isNewWork) {
@@ -126,7 +126,7 @@ export default {
               })
           }
         } else {
-          this.$message.error($t('header.saveErrorMessage'))
+          this.$message.error(this.$t('header.saveErrorMessage'))
         }
       } catch (err) {
         console.log(err)

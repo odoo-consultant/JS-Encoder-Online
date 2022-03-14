@@ -14,11 +14,11 @@
             :rules="rules.password" @click:append="showPwd = !showPwd"></v-text-field>
           <v-btn color="primary" block x-large :loading="loginLoading" @click="login">{{ $t('signin.loginButton') }}</v-btn>
         </v-form>
-        <div class="forget-pwd text-right">
+<!--         <div class="forget-pwd text-right">
           <router-link to="/forgetPwd">
             <span class="text-sm">{{ $t('signin.forgotPassword') }}</span>
           </router-link>
-        </div>
+        </div> -->
         <v-divider class="divider"></v-divider>
         <div class="third-part-btn d-flex flex-jcc">
           <v-tooltip top disabled>
@@ -31,7 +31,7 @@
           </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn class="btn-gitee" icon x-large v-bind="attrs" v-on="on" @click="loginWithGitee">
+              <v-btn class="btn-gitee" icon x-large v-bind="attrs" v-on="on" @click="loginWithGitee" disabled>
                 <i class="icon iconfont icon-gitee title-lg"></i>
               </v-btn>
             </template>

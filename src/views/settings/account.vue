@@ -20,11 +20,11 @@
           <v-btn color="error" text v-if="curUserDetail.giteeId" :loading="giteeLoading" @click="unbindTip('gitee')">
             {{ $t('settings.account.unbindButton') }}
           </v-btn>
-          <v-btn color="primary" text v-else :loading="giteeLoading" @click="bindGitee">{{ $t('settings.account.bindButton') }}</v-btn>
+          <v-btn color="primary" text disabled v-else :loading="giteeLoading" @click="bindGitee">{{ $t('settings.account.bindButton') }}</v-btn>
         </div>
       </div>
     </div>
-    <div class="account-item account-email d-flex flex-clo">
+<!--     <div class="account-item account-email d-flex flex-clo">
       <span class="item-title title-xs">{{ $t('settings.account.bindEmailButton') }}</span>
       <span class="text-sm text-describe">{{ $t('settings.account.bindEmailTips') }}</span>
       <div class="text-md bound-email item-content">
@@ -37,7 +37,7 @@
           </v-col>
         </v-row>
       </div>
-    </div>
+    </div> -->
     <div class="account-item account-delete d-flex flex-clo">
       <span class="item-title title-xs">{{ $t('settings.account.deleteAccountButton') }}</span>
       <span class="text-sm text-describe">{{ $t('settings.account.deleteAccountTips') }}</span>

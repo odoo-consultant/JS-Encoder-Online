@@ -95,7 +95,7 @@ export default {
       searchForm: {
         keyword: '',
         prep: '',
-        sort: 2,
+        sort: 0,
       },
       page: 1,
       instanceList: [],
@@ -120,7 +120,7 @@ export default {
     sortList() {
       return [
         { text: this.$t('explore.sortByCreateDate'), value: 0 },
-        { text: this.$t('explore.sortByCreateDate'), value: 1 },
+        { text: this.$t('explore.sortByUpdateDate'), value: 1 },
         { text: this.$t('explore.sortByPopularity'), value: 2 },
       ]
     }

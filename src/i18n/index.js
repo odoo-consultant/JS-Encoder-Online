@@ -17,6 +17,7 @@ Vue.i18n.add('zh-CN', tZhCN)
 Vue.i18n.add('en', tEn)
 Vue.i18n.add('jp', tJp)
 
+const icons = {'zh-CN': '中', 'en': 'En', 'jp': '日'}
 const langs = ['zh-CN', 'en', 'jp'] // 支持哪些语言
 const defaultLang = langs[0] // 默认
 
@@ -84,5 +85,6 @@ Vue.i18n.fallback(langs[0])
 export {
     // lang, // 获取到当前语言
     // langs, // 所支持的语言列表
+    icons,
     setLang
 }

@@ -5,11 +5,12 @@ const env = {
     // server: 'http://106.12.123.56:8090',
     // server: 'http://192.168.10.58:8090',
     server: 'http://192.168.3.188:8069',
+    // server: 'https://api.moco.co',
     client: 'http://localhost:8080',
   },
   prod: {
-    server: 'http://192.168.3.188:8069',
-    client: 'https://www.lliiooiill.cn',
+    server: 'https://api.moco.co',
+    client: 'https://odoo.moco.co',
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <v-card class="self-instance-card">
-    <v-img class="instance-card-img" :src="`${qiNiuImgLink}${info.img||defPosterKey}`">
+    <v-img class="instance-card-img" :src="`${info.img||defPosterKey}`">
       <div class="img-screen pointer d-flex flex-ai flex-jcc" @click="viewInstance">
         <v-icon>mdi-eye</v-icon>
       </div>
