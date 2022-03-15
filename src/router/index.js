@@ -4,6 +4,7 @@ import Home from '@views/home'
 import store from '@store/index.js'
 import cookie from '@utils/cookie'
 import localStore from '@utils/localStorage'
+import baseUrl from '@service/env'
 
 Vue.use(VueRouter)
 
@@ -155,6 +156,8 @@ router.beforeEach(async (to, _, next) => {
   if (to.name === 'Home') {
     const { type, code, state: csrfT } = to.query
     const OauthTypeList = ['github', 'gitee']
+
+    // console.log('AUTH_TOKEN=' + cookie.get('AUTH_TOKEN'))    
     // 如果参数满足要求则为第三方登录绑定，如果没有满足请求，则进行普通自动登录
     if (code && OauthTypeList.includes(type) && csrfT) {
       /**
@@ -168,7 +171,9 @@ router.beforeEach(async (to, _, next) => {
         cookie.del('CSRF_TOKEN')
         try {
           const authT = cookie.get('AUTH_TOKEN')
-          const giteeRes = await api.loginGitee({ code }, authT ? { headers: { token: authT } } : {})
+
+          const redirectUri = baseUrl.client + '/?type=gitee'
+          const giteeRes = await api.loginGitee({ code, redirect_uri: redirectUri }, authT ? { headers: { token: authT } } : {})
           const { state: bindState, token: tmpToken } = giteeRes
           // 在本地已有登录凭证，说明是在登录状态下进行第三方绑定
           if (authT && bindState) {

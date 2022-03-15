@@ -31,7 +31,7 @@
           </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn class="btn-gitee" icon x-large v-bind="attrs" v-on="on" @click="loginWithGitee" disabled>
+              <v-btn class="btn-gitee" icon x-large v-bind="attrs" v-on="on" @click="loginWithGitee">
                 <i class="icon iconfont icon-gitee title-lg"></i>
               </v-btn>
             </template>

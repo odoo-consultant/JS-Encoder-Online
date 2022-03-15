@@ -20,7 +20,7 @@
           <v-btn color="error" text v-if="curUserDetail.giteeId" :loading="giteeLoading" @click="unbindTip('gitee')">
             {{ $t('settings.account.unbindButton') }}
           </v-btn>
-          <v-btn color="primary" text disabled v-else :loading="giteeLoading" @click="bindGitee">{{ $t('settings.account.bindButton') }}</v-btn>
+          <v-btn color="primary" text v-else :loading="giteeLoading" @click="bindGitee">{{ $t('settings.account.bindButton') }}</v-btn>
         </div>
       </div>
     </div>
