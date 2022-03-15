@@ -17,7 +17,7 @@
           <i class="icon iconfont icon-gitee title-lg"></i>
           <span>Gitee</span>
           <v-spacer></v-spacer>
-          <v-btn color="error" text v-if="curUserDetail.giteeId" :loading="giteeLoading" @click="unbindTip('gitee')">
+          <v-btn color="error" text disabled v-if="curUserDetail.giteeId" :loading="giteeLoading" @click="unbindTip('gitee')">
             {{ $t('settings.account.unbindButton') }}
           </v-btn>
           <v-btn color="primary" text v-else :loading="giteeLoading" @click="bindGitee">{{ $t('settings.account.bindButton') }}</v-btn>
