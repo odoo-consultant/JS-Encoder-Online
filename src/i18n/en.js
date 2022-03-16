@@ -284,7 +284,7 @@ export default {
         loginSuccessTips: "Login successful",
         usernameRequiredTips: "Please fill in the user name or email address",
         passwordRequiredTips: "Please fill in the password",
-        bindErrorMessage: "Binding failed",
+        bindErrorMessage: "Binding failed, the account has been bound",
         loginErrorMessage: "Login failed, user name / email or password error",
         bindSuccessTips: "Binding succeeded",
         verify: {

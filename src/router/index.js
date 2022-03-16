@@ -167,17 +167,18 @@ router.beforeEach(async (to, _, next) => {
        */
       // csrfT用于防止csrf攻击
       const localCsrfT = cookie.get('CSRF_TOKEN')
-      if (csrfT === localCsrfT || type === 'gitee') {
+      if (csrfT === localCsrfT || type === 'gitee' || type === 'github') {
         cookie.del('CSRF_TOKEN')
         try {
           const authT = cookie.get('AUTH_TOKEN')
 
-          const redirectUri = baseUrl.client + '/?type=gitee'
-          const giteeRes = await api.loginGitee({ code, redirect_uri: redirectUri }, authT ? { headers: { token: authT } } : {})
-          const { state: bindState, token: tmpToken } = giteeRes
+          const redirectUri = baseUrl.client + '/?type=' + type
+          const giteeRes = type === 'gitee' ? await api.loginGitee({ code, redirect_uri: redirectUri }, authT ? { headers: { token: authT } } : {}) : await api.loginGithub({ code, redirect_uri: redirectUri }, authT ? { headers: { token: authT } } : {})
+          const { state: bindState, token: tmpToken, msg: errCode } = giteeRes
           // 在本地已有登录凭证，说明是在登录状态下进行第三方绑定
           if (authT && bindState) {
-            message.success('绑定第三方账户成功！')
+            // message.success('绑定第三方账户成功！')
+            message.success(Vue.i18n.translate('signin.bindSuccessTips'))
             login()
           } else {
             // 存储临时token用于第三方登录绑定账号
@@ -209,8 +210,13 @@ router.beforeEach(async (to, _, next) => {
                 // message.error('登录失败！')
               }
             } else {
-              // 没有绑定过账号就弹出dialog询问用户是否有账号
-              store.commit('setVisibleDialogName', 'loginVerify')
+              if (errCode === 1) {
+                message.error(Vue.i18n.translate('signin.bindErrorMessage'))
+                next('/')
+              } else {
+                // 没有绑定过账号就弹出dialog询问用户是否有账号
+                store.commit('setVisibleDialogName', 'loginVerify')
+              }
             }
           }
         } catch (err) {

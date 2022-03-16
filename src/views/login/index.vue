@@ -23,7 +23,7 @@
         <div class="third-part-btn d-flex flex-jcc">
           <v-tooltip top disabled>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn class="btn-github" icon x-large v-bind="attrs" v-on="on" @click="loginWithGitHub" disabled>
+              <v-btn class="btn-github" icon x-large v-bind="attrs" v-on="on" @click="loginWithGitHub">
                 <i class="icon iconfont icon-github title-lg"></i>
               </v-btn>
             </template>
@@ -130,7 +130,19 @@ export default {
           this.loginLoading = false
         })
     },
-    loginWithGitHub() {},
+    loginWithGitHub() {
+      const csrfT = randomCSRFToken()
+      const requireStr = qs.stringify({
+        client_id: oauthCONFIG.github.clientID,
+        redirect_uri: `${baseUrl.client}/?type=github`,
+        state: csrfT,
+      })
+      cookie.set('CSRF_TOKEN', csrfT, 60 * 10)
+      window.open(
+        `https://github.com/login/oauth/authorize?${requireStr}scope=user`,
+        '_self'
+      )
+    },
     loginWithGitee() {
       const csrfT = randomCSRFToken()
       const requireStr = qs.stringify({

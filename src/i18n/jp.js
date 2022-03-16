@@ -284,7 +284,7 @@ export default {
         loginSuccessTips: "ログイン成功",
         usernameRequiredTips: "ユーザー名またはメールアドレスを入力してください",
         passwordRequiredTips: "パスワードを記入してください",
-        bindErrorMessage: "バインド失敗",
+        bindErrorMessage: "バインド失敗、すでにバインドされています",
         loginErrorMessage: "ログインに失敗しました。ユーザー名/メールボックスまたはパスワードが間違っています。",
         bindSuccessTips: "バインド成功",
         verify: {

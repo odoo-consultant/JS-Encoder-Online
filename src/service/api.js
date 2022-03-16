@@ -20,6 +20,8 @@ const api = {
   login: (params, config) => post('/api/index/login', params, config),
   /* 第三方登录码云 */
   loginGitee: (params, config) => get('/api/index/gitee', params, config),
+  /* 第三方登录GitHub */
+  loginGithub: (params, config) => get('/api/index/github', params, config),
   /* 直接第三方登录 */
   oauthLogin: (params, config) => post('/api/index/doLogin', params, config),
   /* 退出登录 */

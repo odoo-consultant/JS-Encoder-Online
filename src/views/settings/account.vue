@@ -4,24 +4,28 @@
       <span class="item-title title-xs">{{ $t('settings.account.title') }}</span>
       <span class="text-sm text-describe">{{ $t('settings.account.headerTips') }}</span>
       <div class="item-content">
-        <div class="d-flex flex-ai third-list">
-          <i class="icon iconfont icon-github title-lg"></i>
-          <span>GitHub</span>
-          <v-spacer></v-spacer>
-          <v-btn color="error" text disabled v-if="curUserDetail.githubId" :loading="githubLoading"
-            @click="unbindTip('github')">{{ $t('settings.account.unbindButton') }}
-          </v-btn>
-          <v-btn color="primary" text disabled v-else :loading="githubLoading" @click="bindGithub">{{ $t('settings.account.bindButton') }}</v-btn>
-        </div>
-        <div class="d-flex flex-ai third-list">
-          <i class="icon iconfont icon-gitee title-lg"></i>
-          <span>Gitee</span>
-          <v-spacer></v-spacer>
-          <v-btn color="error" text disabled v-if="curUserDetail.giteeId" :loading="giteeLoading" @click="unbindTip('gitee')">
-            {{ $t('settings.account.unbindButton') }}
-          </v-btn>
-          <v-btn color="primary" text v-else :loading="giteeLoading" @click="bindGitee">{{ $t('settings.account.bindButton') }}</v-btn>
-        </div>
+        <template v-if="curUserDetail.giteeId === undefined">
+          <div class="d-flex flex-ai third-list">
+            <i class="icon iconfont icon-github title-lg"></i>
+            <span>GitHub</span>
+            <v-spacer></v-spacer>
+            <v-btn color="error" text v-if="curUserDetail.githubId" :loading="githubLoading"
+              @click="unbindTip('github')">{{ $t('settings.account.unbindButton') }}
+            </v-btn>
+            <v-btn color="primary" text v-else :loading="githubLoading" @click="bindGithub">{{ $t('settings.account.bindButton') }}</v-btn>
+          </div>
+        </template>
+        <template v-if="curUserDetail.githubId === undefined">
+          <div class="d-flex flex-ai third-list">
+            <i class="icon iconfont icon-gitee title-lg"></i>
+            <span>Gitee</span>
+            <v-spacer></v-spacer>
+            <v-btn color="error" text v-if="curUserDetail.giteeId" :loading="giteeLoading" @click="unbindTip('gitee')">
+              {{ $t('settings.account.unbindButton') }}
+            </v-btn>
+            <v-btn color="primary" text v-else :loading="giteeLoading" @click="bindGitee">{{ $t('settings.account.bindButton') }}</v-btn>
+          </div>
+        </template>
       </div>
     </div>
 <!--     <div class="account-item account-email d-flex flex-clo">
@@ -100,15 +104,40 @@ export default {
         console.log(err)
       }
     },
-    unbindGithub() {
-      const formData = new FormData()
-      formData.append('username', this.loginInfo.username)
-      this.$http.unbindGithub(formData).catch((err) => {
+    async unbindGithub() {
+      try {
+        const res = await this.$http.unbindGithub({
+          username: this.loginInfo.username,
+        })
+        if (res.state) {
+          this.$message.success(this.$t('settings.account.unbindSuccessTips'))
+          this.setUserBindInfo({ key: 'githubId', val: '' })
+        } else {
+          this.$message.error(this.$t('settings.account.unbindErrorMessage'))
+        }
+      } catch (err) {
         console.log(err)
-        this.$message.error(this.$t('settings.account.unbindErrorMessage'))
-      })
+      }
+      // const formData = new FormData()
+      // formData.append('username', this.loginInfo.username)
+      // this.$http.unbindGithub(formData).catch((err) => {
+      //   console.log(err)
+      //   this.$message.error(this.$t('settings.account.unbindErrorMessage'))
+      // })
     },
-    bindGithub() {},
+    bindGithub() {
+      const csrfT = randomCSRFToken()
+      const requireStr = qs.stringify({
+        client_id: oauthCONFIG.github.clientID,
+        redirect_uri: `${baseUrl.client}/?type=github`,
+        state: csrfT,
+      })
+      cookie.set('CSRF_TOKEN', csrfT, 60 * 10)
+      window.open(
+        `https://github.com/login/oauth/authorize?${requireStr}scope=user`,
+        '_self'
+      )      
+    },
     bindGitee() {
       const csrfT = randomCSRFToken()
       const requireStr = qs.stringify({

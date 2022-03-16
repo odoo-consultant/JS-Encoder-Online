@@ -328,8 +328,6 @@ export default {
 		bindErrorMessage: '绑定第三方账户失败，该账户已被绑定',
 		loginErrorMessage: '登录失败，用户名/邮箱或密码错误',
 		bindSuccessTips: '绑定成功',
-		bindErrorMessage: '绑定失败',
-
 		verify: {
 			title : '第三方登陆确认',
 			headerTips: '您是否已经注册了 OWL Encoder 账户？',
