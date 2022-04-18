@@ -75,7 +75,7 @@ export default {
         features: "新機能",
         feedback: "フィードバック",
         document: "ドキュメント",
-        github: "GitHub"
+        backend: "Backend"
     },
     headerAccount: {
         logoutTips: "ログアウトしたら、次回は手动で登录するしかないですよ"

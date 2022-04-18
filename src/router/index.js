@@ -185,7 +185,7 @@ router.beforeEach(async (to, _, next) => {
             sessionStorage.setItem('TMP_OAUTH_TOKEN', tmpToken)
             if (bindState) {
               // 绑定账号了，直接将token传过去获取登录信息
-              const oauthLoginRes = await api.oauthLogin({}, { headers: { token: tmpToken } })
+              const oauthLoginRes = await api.oauthLogin({session_id: tmpToken}, { headers: { token: tmpToken } })
               const { state: loginState, token: loginToken, data } = oauthLoginRes
               if (loginState) {
                 // 存储请求权限凭证

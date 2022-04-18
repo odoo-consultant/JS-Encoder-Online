@@ -63,7 +63,7 @@ export default {
         //   text: 'navList.document',
         // },
         {
-          text: 'navList.github',
+          text: 'navList.backend',
         },
       ]),
       showNav: false,
@@ -82,8 +82,8 @@ export default {
     ...mapMutations(['setHasNewFeatures']),
     navJumpTo(navItem) {
       switch (navItem.text) {
-        case 'navList.github': {
-          window.open('https://github.com/odoo-consultant/JS-Encoder-Online')
+        case 'navList.backend': {
+          window.open('https://apps.odoo.com/apps/modules/14.0/sgp_owl/')
           break
         }
         case 'navList.document': {

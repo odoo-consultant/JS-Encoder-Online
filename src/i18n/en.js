@@ -6,11 +6,11 @@ export default {
         followButton: "follow",
         likeButton: "like",
         unlikeButton: "unlike",
-        saveButton: "preservation",
+        saveButton: "save",
         cancelButton: "cancel",
         confirmButton: "confirm",
         deleteButton: "delete",
-        createNewButton: "New instance",
+        createNewButton: "Create New",
         searchButton: "search",
         filterButton: "filter",
         modifyButton: "modify",
@@ -19,11 +19,11 @@ export default {
         refreshButton: "refresh",
         fullscreenButton: "Fullscreen",
         goHomeButton: "Return to home page",
-        sortLabel: "sort",
+        sortLabel: "Sort",
         createDate: "Create date",
         updateDate: "Update date",
         popularity: "Popularity",
-        account: "account",
+        account: "Account",
         signin: "Sign In",
         signup: "Sign Up",
         username: "username",
@@ -41,7 +41,7 @@ export default {
         mine: "mine",
         logout: "Logout",
         recycleBin: "recycle bin",
-        loginRequiredTips: "Please log in and then carry out relevant operations",
+        loginRequiredTips: "Please log in and then process relevant operations",
         emptyGridTips: "It's empty",
         unknownErrorMessage: "unknown error",
         likeSelfProhibited: "You can't like your own examples"
@@ -75,16 +75,16 @@ export default {
         features: "Features",
         feedback: "Feedback",
         document: "Document",
-        github: "GitHub"
+        backend: "Backend"
     },
     headerAccount: {
         logoutTips: "After logging out, you can only log in manually next time"
     },
     header: {
-        newWorkName: "New instance",
-        save: "preservation",
-        like: "give the thumbs-up",
-        unlike: "Cancel like",
+        newWorkName: "Create New",
+        save: "save",
+        like: "like",
+        unlike: "unlike",
         savedTips: "Instance saved successfully",
         saveErrorMessage: "Instance saving failed"
     },

@@ -87,7 +87,7 @@ export default {
 		features: '新特性',
 		feedback: '反馈',
 		document: '文档',
-		github: 'GitHub',
+		backend: "Backend"
 	},
 
 	headerAccount: {
