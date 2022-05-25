@@ -141,7 +141,11 @@ const router = new VueRouter({
   routes,
 })
 
-router.beforeEach(async (to, _, next) => {
+router.beforeEach(async (to, from, next) => {
+  if (to.name && from.name) { 
+    router.app.$hiAnalytics.pageEnd(window.location.host + '/#' + from.path); 
+    router.app.$hiAnalytics.pageStart(window.location.host + '/#' + to.path); 
+  }   
   // 每次跳转页面取消之前的请求
   // try {
   //   store.state.cancelRequest.cancelTokenArr.forEach((cancelToken) => {
