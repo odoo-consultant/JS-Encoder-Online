@@ -31,7 +31,7 @@ JS-Encoder-Online 在原本的离线版 JS-Encoder 添加了许多功能：
 
 ## Support
 
-如果你喜欢 **JS-Encoder**，点个 star 💗 支持一下吧！
+如果你喜欢 **OWL-Encoder**，点个 star 💗 支持一下吧！
 
 ## LICENSE
 
